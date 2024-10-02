@@ -17,8 +17,12 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <!-- Wow -->
     <link rel="stylesheet" href="assets/css/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.css">
+    
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
 </head> 
 <body>
     
@@ -340,7 +344,7 @@
 <div class="breadcrumb py-26 bg-color-two">
     <div class="container container-lg">
         <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
-            <h6 class="mb-0">Berita</h6>
+            <h6 class="mb-0">Indikator Statistik</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
                     <a href="index.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
@@ -351,185 +355,338 @@
                 <li class="flex-align">
                     <i class="ph ph-caret-right"></i>
                 </li>
-                <li class="text-sm text-neutral-600"> Berita </li>
+                <li class="text-sm text-neutral-600"> Indikator Statistik </li>
             </ul>
         </div>
     </div>
 </div>
 <!-- ========================= Breadcrumb End =============================== -->
 
-<!-- =============================== Blog Section Start =========================== -->
-<section class="blog py-80">
-    <div class="container container-lg">
-        <div class="row gy-5">
+<!-- ======= Statistik Section ======= -->
+<section id="statistik" class="tabel pb-40">
+    <div class="container" data-aos="fade-up">
 
-            <!-- Sidebar Start -->
-            <div class="col-lg-3">
-                <div class="shop-sidebar">
-                    <button type="button" class="shop-sidebar__close d-lg-none d-flex w-32 h-32 flex-center border border-gray-100 rounded-circle hover-bg-main-600 position-absolute inset-inline-end-0 me-10 mt-8 hover-text-white hover-border-main-600">
-                        <i class="ph ph-x"></i>
-                    </button>
-                    <div class="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                        <h6 class="text-xl border-bottom border-gray-100 pb-24 mb-24">Subjek Indikator</h6>
-                        <ul class="max-h-540 overflow-y-auto scroll-sm">
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Kependudukan dan Ketenagakerjaan (6)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Pendidikan dan Poltik & Keamanan (8)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Indeks Pembangunan Manusia dan Kemiskinan (14)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Harga-Harga (1)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Pertanian (7)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Pariwisata dan Transportasi (5)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Ekspor dan Impor (3)</a>
-                            </li>
-                            <li class="mb-24">
-                                <a href="product-details-two.html" class="text-gray-900 hover-text-main-600">Produk Domestik Regional Bruto (14)</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="input-group rounded py-40">
+        <input type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
+      </div>
+     <div class="col-lg-3">
+      <ul class="nav nav-tabs flex-column">
+        <li class="nav-item">
+          <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Kependudukan dan Ketenagakerjaan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Pendidikan dan Politik & Keamanan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Indeks Pembangunan Manusia dan Kemiskinan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Harga-Harga</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Pertanian</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-6">Pariwisata dan Transportasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-7">Ekspor dan Impor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-8">Produk Domestik Regional Bruto</a>
+          </li>
+      </ul>
+     </div>
+    
+     <div class="col-lg-9 mt-4 mt-lg-0">
+      <div class="tab-content">
+        
+        <div class="tab-pane active show" id="tab-1">
+          <div class="row">
+            <div class="col-lg-12 details order-2 order-lg-1">
+              <div class="table-responsive">
+               <table class="table">
+                 <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                  <tr>
+                    <th scope="col">Indikator</th>
+                    <th scope="col">Terakhir Diperbarui</th>
+                  </tr>
+                 </thead>
+                 <tbody class="text-black">
+                  <tr>
+                    <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                    <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                    <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                    <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                    <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                  </tr>
+                 </tbody>
+              </table>
+             </div>
             </div>
-            <!-- Sidebar End -->
-
-                <div class="col-lg-4">
-                    <div class="blog-item"> 
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-16 overflow-hidden">
-                            <img src="assets/images/thumbs/blog-img1.png" alt="" class="cover-img">
-                        </a>
-                        <div class="blog-item__content mt-24">
-                            <h6 class="text-2xl mb-24">
-                                <a href="berita-detail.html" class="">Legal structure, can make profit buisness</a>
-                            </h6>
-                            <p class="text-gray-700 text-line-2">Re-engagement — objectives. As developers, we rightfully obsess about the customer experience, relentlessly working to squeeze every millisecond out of the critical rendering path, optimize input latency, and eliminate...</p>
-
-                            <div class="flex-align flex-wrap gap-24 pt-24 mt-24 border-top border-gray-100">
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                    </span>
-                                </div>
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-user"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">Admin Konreg Jabalnusra</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item"> 
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-16 overflow-hidden">
-                            <img src="assets/images/thumbs/blog-img2.png" alt="" class="cover-img">
-                        </a>
-                        <div class="blog-item__content mt-24">
-                            <h6 class="text-2xl mb-24">
-                                <a href="berita-detail.html" class="">Legal structure, can make profit buisness</a>
-                            </h6>
-                            <p class="text-gray-700 text-line-2">Re-engagement — objectives. As developers, we rightfully obsess about the customer experience, relentlessly working to squeeze every millisecond out of the critical rendering path, optimize input latency, and eliminate...</p>
-
-                            <div class="flex-align flex-wrap gap-24 pt-24 mt-24 border-top border-gray-100">
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                    </span>
-                                </div>
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-user"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">Admin Konreg Jabalnusra</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="blog-item"> 
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-16 overflow-hidden">
-                            <img src="assets/images/thumbs/blog-img3.png" alt="" class="cover-img">
-                        </a>
-                        <div class="blog-item__content mt-24">
-                            <h6 class="text-2xl mb-24">
-                                <a href="berita-detail.html" class="">Legal structure, can make profit buisness</a>
-                            </h6>
-                            <p class="text-gray-700 text-line-2">Re-engagement — objectives. As developers, we rightfully obsess about the customer experience, relentlessly working to squeeze every millisecond out of the critical rendering path, optimize input latency, and eliminate...</p>
-
-                            <div class="flex-align flex-wrap gap-24 pt-24 mt-24 border-top border-gray-100">
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                    </span>
-                                </div>
-                                <div class="flex-align flex-wrap gap-8">
-                                    <span class="text-lg text-main-two-600"><i class="ph ph-user"></i></span>
-                                    <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">Admin Konreg Jabalnusra</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Pagination Start -->
-                <ul class="pagination flex-center flex-wrap gap-16">
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">01</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">02</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">03</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">04</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">05</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">06</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">07</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- Pagination End -->
-
-            </div>
-            
-            </div>
+          </div>
         </div>
+
+        <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+      
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-5">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-6">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-7">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-8">
+            <div class="row">
+              <div class="col-lg-12 details order-2 order-lg-1">
+                <div class="table-responsive">
+                 <table class="table">
+                   <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
+                    <tr>
+                      <th scope="col">Indikator</th>
+                      <th scope="col">Terakhir Diperbarui</th>
+                    </tr>
+                   </thead>
+                   <tbody class="text-black">
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Penduduk Menurut Provinsi se-Jabalnusra (ribu jiwa), 2015-2024</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Kepadatan Penduduk Menurut Provinsi se-Jabalnusra (jiwa/km2), 2015-2024</td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Komposisi Penduduk dan Rasio Ketergantungan Menurut Provinsi Se-Jabalnusra (persen), 2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                    <tr>
+                      <td><a href="indikator-detail.html">Jumlah Angkatan Kerja Menurut Provinsi Se-Jabalnusra (jiwa), 2015-2023</a></td>
+                      <td><a href="indikator-detail.html">2 Oktober 2024</a></td>
+                    </tr>
+                   </tbody>
+                </table>
+               </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+     </div>
     </div>
- </section>
-<!-- =============================== Blog Section End =========================== -->
+   </div>
+  </section><!-- End Statistik Section -->
 
 <!-- ============================== Brand Section Start =============================== -->
 <div class="brand pb-40">
@@ -648,5 +805,8 @@
 
     <!-- main js -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
