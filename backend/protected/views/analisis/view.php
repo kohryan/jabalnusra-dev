@@ -10,7 +10,7 @@
             <div class="card-body">
 				<div class="flex justify-between items-center p-3">
                     <div class="">
-                    	<?php echo ($data->user_id ? $data->user->username : '-')." - ".( $data->satker_id ? $data->satker->nama : "-");?>
+                    	<?php echo ($data->user_id ? $data->user->username." - " : '').( $data->satker_id ? $data->satker->nama : "-");?>
                     </div>
                     <div class="">
 					<?php echo ( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-");?>
