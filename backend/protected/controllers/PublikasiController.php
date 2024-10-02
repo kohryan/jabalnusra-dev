@@ -27,66 +27,135 @@ class PublikasiController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('list');
+		$model=new Publikasi;
+		$publikasi=$model->list(10,0); //limit,page
+		$this->render('list',array('publikasi'=>$publikasi));
 	}
 
 	public function actionCreate(){
-		if(isset($_POST['judul'])){
-			echo json_encode($_POST['judul']);
-			exit();
+		$model=new Publikasi;
+		if(isset($_POST['Publikasi'])){
+			$model->attributes=$_POST['Publikasi'];
+			$judul=$_POST['Publikasi']['judul'];
+			$abstraksi=$_POST['Publikasi']['abstraksi'];
+
+			$data=array(
+				"judul"     => $judul,
+				"abstraksi" => $abstraksi,
+				"satker_id" => 1,
+				"user_id"   => 1,
+				"file"     => "",
+        		"cover"     => ""
+			);
+
+			$uploadedFile = CUploadedFile::getInstance($model, 'file');
+			$filepath="";
+			if($uploadedFile){
+				if ($model->validate()) {
+					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					if ($uploadedFile->saveAs($filePath)) {
+						$data['path_file']=$filePath;
+					}
+				} 
+			}
+
+			$uploadedCover = CUploadedFile::getInstance($model, 'cover');
+			$coverpath="";
+			if($uploadedCover){
+				if ($model->validate()) {
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					if ($uploadedCover->saveAs($coverPath)) {
+						$data['path_cover']=$coverPath;
+					}
+				} 
+			}
+
+			$responses=$model->create($data);
+			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
+			return $this->redirect(array('create'));
 		}
-		$this->render('create');
+		$this->render('create',array('model'=>$model));
 	}
 
-	public function actionUpdate(){
-		$this->render('update');
+	public function actionUpdate($id){
+		$model=new Publikasi;
+		if(isset($_POST['Publikasi'])){
+			$model->attributes=$_POST['Publikasi'];
+			$judul=$_POST['Publikasi']['judul'];
+			$abstraksi=$_POST['Publikasi']['abstraksi'];
+
+			$data=array(
+				"Id"		=> $id,
+				"judul"     => $judul,
+				"abstraksi" => $abstraksi,
+				"satker_id" => 1,
+				"user_id"   => 1,
+				"file"     => "",
+        		"cover"     => ""
+			);
+
+			$uploadedFile = CUploadedFile::getInstance($model, 'file');
+			$filepath="";
+			if($uploadedFile){
+				if ($model->validate()) {
+					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					if ($uploadedFile->saveAs($filePath)) {
+						$data['path_file']=$filePath;
+					}
+				}
+			} 
+
+			$uploadedCover = CUploadedFile::getInstance($model, 'cover');
+			$coverpath="";
+			if($uploadedCover){
+				if ($model->validate()) {
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					if ($uploadedCover->saveAs($coverPath)) {
+						$data['path_cover']=$coverPath;
+					}
+				} 
+			} 
+
+			$responses=$model->update($data);
+			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
+			return $this->redirect(array('index'));
+		}
+
+		$data_publikasi=$model->findById($id);
+		if($data_publikasi){
+			$data=json_decode($data_publikasi);
+			$oldFile=( isset($data->file) ? $data->file[0]->signedUrl : null);
+			$oldCover=( isset($data->cover) ? $data->cover[0]->signedUrl : null);
+			$model->judul= $data->judul;
+			$model->abstraksi=$data->abstraksi;
+			$model->file=$oldFile;
+			$model->cover=$oldCover;
+		}
+		$this->render('create',array('model'=>$model));
 	}
 
 	public function actionDelete(){
-		$this->render('delete');
-	}
+		if(Yii::app()->request->isPostRequest){
+			$id = Yii::app()->request->getPost('id');
 
-	protected function delete($id){
-		$url = 'https://app.nocodb.com/api/v2/tables/mfco5l9qyf8fzvs/records';
-
-		// Data to be sent in the DELETE request
-		$data = array(
-			'Id' => $id
-		);
-
-		// Initialize cURL
-		$ch = curl_init($url);
-
-		// Set cURL options
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");  // Set HTTP method to DELETE
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);      // Return response as a string
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'accept: */*',                                   // Accept header
-			'xc-token: zfzit5j0r0nIGO_QTwhhTEktdzk9RabhNgmI5yn3', // API token
-			'Content-Type: application/json'                 // Content type
-		));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));  // Attach data in JSON format
-
-		// Execute the request
-		$response = curl_exec($ch);
-
-		// Check for errors
-		if (curl_errno($ch)) {
-			return null;
+			$model=new Publikasi;
+			$responses=$model->delete($id);
+			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
+			echo json_encode($responses);
+			// return $this->redirect(array('index'));
 		} else {
-			// Output response from the server
-			// echo json_encode($response)."<br>";
-			return $response;
+			throw new CHttpException(403,'Anda tidak diizinkan untuk melakukan action ini.');
 		}
-
-		// Close cURL session
-		curl_close($ch);
 	}
 
-	public function actionView(){
-		$this->render('view');
+	public function actionView($id){
+		$model=new Publikasi;
+		$data_publikasi=$model->findById($id);
+		if($data_publikasi){
+			$data=json_decode($data_publikasi);
+	
+			$this->render('view',array('data'=>$data));
+		}
 	}
 
 }

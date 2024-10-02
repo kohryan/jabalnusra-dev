@@ -11,45 +11,49 @@
                     <h4 class="card-title">Tambah Analisis Baru</h4>
                 </div>
             </div>
-			<div class="card-body p-3">
-				<?php echo CHtml::beginForm(); ?>
+			<div class="card-body p-3 h-screen">
+			<?php
+					foreach(Yii::app()->user->getFlashes() as $key => $message) {
+						echo '<div class="bg-'.$key.'/10 text-'.$key.'   border border-'.$key.'/20 text-sm rounded-md py-3 px-5 mb-4" role="alert">'.$message.'</div>';
+					}
+					
+				$form = $this->beginWidget('CActiveForm', [
+					'id' => 'form-analisis',
+					'htmlOptions' => ['enctype' => 'multipart/form-data'], // Important for file uploads
+				]);
+				?>
 					<div class="mb-3">
-						<label class="mb-2" for="judul">Judul <span class="text-danger">*</span></label>
-						<input type="text" name="judul" id="judul" class="form-input">
+						<?php echo $form->labelEx($model, 'judul'); ?>
+						<?php echo $form->TextField($model, 'judul',array("class"=>"form-input")); ?>
+						<?php echo $form->error($model, 'judul'); ?>
 					</div>
 					<div class="mb-3">
-						<label class="mb-2" for="deskripsi">Deskripsi <span class="text-danger">*</span></label>
-						<textarea class="form-input" id="deskripsi" id="deskripsi" rows="5"></textarea>
+						<?php echo $form->labelEx($model, 'deskripsi'); ?>
+						<?php echo $form->textArea($model, 'deskripsi',array("class"=>"form-input",'rows' => 6, 'cols' => 50)); ?>
+						<?php echo $form->error($model, 'deskripsi'); ?>
 					</div>
-					<div class="dropzone mb-3" id="cover">
-						<div class="fallback">
-							<input name="filecover" type="file" multiple="multiple">
-						</div>
-						<div class="dz-message needsclick w-full">
-							<div class="mb-3">
-								<i class="ri-upload-cloud-line text-4xl text-gray-300 dark:text-gray-200"></i>
-							</div>
-							<h5 class="text-xl text-gray-600 dark:text-gray-200">Letakkan Gambar Cover disini untuk melakukan upload</h5>
-						</div>
+                    <div class="mb-3" >
+						<?php echo $form->labelEx($model, 'cover'); ?>
+						<?php echo $form->fileField($model, 'cover',array("class"=>"form-input border")); ?>
+						<?php echo $form->error($model, 'cover'); ?>
+						<?php
+							echo ( isset($model->cover) ? '<span class="help-block text-success">Cover : <a href="'.$model->cover.'" target="_blank">'.$model->judul.'</a></span>' : '');
+						?>
                     </div>
-                    <div class="dropzone mb-3" id="filepdf">
-						<div class="fallback">
-							<input name="filepdf" type="file" multiple="multiple">
-						</div>
-						<div class="dz-message needsclick w-full">
-							<div class="mb-3">
-								<i class="ri-upload-cloud-line text-4xl text-gray-300 dark:text-gray-200"></i>
-							</div>
-							<h5 class="text-xl text-gray-600 dark:text-gray-200">Letakkan File Publikasi disini untuk melakukan upload</h5>
-						</div>
+
+					<div class="mb-3" >
+						<?php echo $form->labelEx($model, 'file'); ?>
+						<?php echo $form->fileField($model, 'file',array("class"=>"form-input border")); ?>
+						<?php echo $form->error($model, 'file'); ?>
+						<?php
+							echo ( isset($model->file) ? '<span class="help-block text-success">File : <a href="'.$model->file.'" target="_blank">'.$model->judul.'</a></span>' : '');
+						?>
                     </div>
 					<div class="mb-3">
-						<?php echo CHtml::submitButton('Tambah Publikasi',array('class'=>'btn w-full bg-primary text-white')); ?>
+						<?php echo CHtml::submitButton('Tambah Analisis',array('class'=>'btn w-full bg-primary text-white')); ?>
                     </div>
-				<?php echo CHtml::endForm(); ?>
+					<?php $this->endWidget(); ?>
 			</div>
 		</div>
     </div>
 </main>
-<!-- Dropzone js -->
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/libs/dropzone/min/dropzone.min.js"></script>

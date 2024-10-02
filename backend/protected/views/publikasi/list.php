@@ -2,42 +2,7 @@
 	/* @var $this SiteController */
 	$this->pageTitle=Yii::app()->name;
 
-	function getData($offset){
-		if(isset($_GET['page'])){
-			$offset=(($_GET['page'])- 1 ) * 10;
-		}
-
-		$curl = curl_init();
-
-		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mfco5l9qyf8fzvs/records?offset=".$offset."&limit=10",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => [
-				"xc-token: zfzit5j0r0nIGO_QTwhhTEktdzk9RabhNgmI5yn3"
-			],
-		]);
-		
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		
-		curl_close($curl);
-		
-		if ($err) {
-			return null;
-		} else {
-			// echo json_encode($response)."<br>";
-			// exit();
-			return $response;
-		}
-	}
-	
-	$listSatker=getData(0);
-	$jsondata=json_decode($listSatker);
+	$jsondata=json_decode($publikasi);
 	
 	$totalData=$jsondata->pageInfo->totalRows;
 	$page=( isset($jsondata->pageInfo->page) ? $jsondata->pageInfo->page : (isset($jsondata->pageInfo->offset) ? $jsondata->pageInfo->offset : 1) );
@@ -63,7 +28,7 @@
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".$data->judul."</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".implode(' ', array_slice(explode(' ', strip_tags($data->abstraksi)),0,100))." ....</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a href='".$data->file[0]->signedUrl."' target='_blank'>".( isset($data->cover) ? "<img src='".$data->cover[0]->thumbnails->card_cover->signedUrl."' alt='".$data->judul."' />" : '-')."</a>" : '-')."</td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a href='".$data->file[0]->signedUrl."' target='_blank'>".( isset($data->cover) ? "<img src='".$data->cover[0]->signedUrl."' alt='".$data->judul."' />" : '-')."</a>" : '-')."</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( $data->satker_id ? $data->satker->nama : "-")."</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="ri-eye-line"></i>',Yii::app()->createUrl('publikasi/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="ri-edit-2-line"></i>',Yii::app()->createUrl('publikasi/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class=' ri-delete-bin-line'></i></span></td>
 			</tr>";
@@ -87,6 +52,11 @@
             </div>
             
 			<div class="p-6">
+				<?php
+					foreach(Yii::app()->user->getFlashes() as $key => $message) {
+						echo '<div class="bg-'.$key.'/10 text-'.$key.'   border border-'.$key.'/20 text-sm rounded-md py-3 px-5 mb-4" role="alert">'.$message.'</div>';
+					}
+				?>
             	<div id="table-gridjs" class="relative overflow-auto">
 					<?php echo $table;?>
 				</div>
@@ -109,19 +79,27 @@
     </div>
 </main>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<?php
+	Yii::app()->clientScript->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', CClientScript::POS_END);
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/libs/loading-overlay/loadingoverlay.js', CClientScript::POS_END);
+?>
 <script type="text/javascript">
 	function del(id){
-		alert("Delete "+id);
 		$.ajax({
 			url: '<?php echo Yii::app()->createUrl('publikasi/delete');?>',
 			data: {'id':id},
 			dataType: 'json',
 			type : 'post',
+			beforeSend : function (){
+                $.LoadingOverlay("show", {
+                    background  : "rgba(0, 0, 0, 0.5)",
+                    image       : "",
+                    text        : "Loading..."
+                });
+            },
 			success : function(response) {
-				// console.log(response.status);
-				alert(response.message);
 				location.reload();
+				$.LoadingOverlay("hide");
 			}
 		});
 	}
