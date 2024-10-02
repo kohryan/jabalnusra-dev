@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Dashboard | Attex - Responsive Tailwind CSS 3 Admin Dashboard</title>
+    <title>Backend Konsultasi Regional PDRB Jabalnusra</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc., Tailwind, TailwindCSS, Tailwind CSS 3" name="description">
     <meta content="coderthemes" name="author">
@@ -106,7 +106,27 @@
                         </a>
                     </li>
 
+                    <li class="menu-title">Data Tabular</li>
+					<li class="menu-item">
+                        <a href="<?php echo Yii::app()->createUrl('data/create'); ?>" class="menu-link">
+							<span class="menu-icon"><i class=" ri-install-line"></i></span>
+							<span class="menu-text">Tambah Data</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?php echo Yii::app()->createUrl('data/index'); ?>" class="menu-link">
+							<span class="menu-icon"><i class=" ri-database-2-line"></i></span>
+                            <span class="menu-text">Daftar Data</span>
+                        </a>
+                    </li>
+
 					<li class="menu-title">Master</li>
+                    <li class="menu-item">
+                        <a href="<?php echo Yii::app()->createUrl('subjek/index'); ?>" class="menu-link">
+							<span class="menu-icon"><i class=" ri-file-mark-line"></i></span>
+                            <span class="menu-text">Subjek Data</span>
+                        </a>
+                    </li>
 					<li class="menu-item">
                         <a href="<?php echo Yii::app()->createUrl('satker/index'); ?>" class="menu-link">
 							<span class="menu-icon"><i class="ri-government-line"></i></span>

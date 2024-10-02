@@ -2,7 +2,7 @@
 	/* @var $this SiteController */
 	$this->pageTitle=Yii::app()->name;
 
-	$jsondata=json_decode($berita);
+	$jsondata=json_decode($data);
 	
 	$totalData=$jsondata->pageInfo->totalRows;
 	$page=( isset($jsondata->pageInfo->page) ? $jsondata->pageInfo->page : (isset($jsondata->pageInfo->offset) ? $jsondata->pageInfo->offset : 1) );
@@ -13,24 +13,24 @@
 	$table="<table class='border-collapse min-w-full border border-primary dark:border-slate-600 bg-white dark:bg-slate-800 text-sm shadow-sm'>
 	<thead class='bg-slate-50 dark:bg-slate-700'>
 	<tr>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>No</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Judul</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Deskripsi</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Image</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Satker</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Aksi</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>No</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Judul</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Subjek</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Update Terakhir</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Pengampu</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Aksi</th>
 	</tr>
 	</thead> <tbody>";
 	if($jsondata->list){
 
 		foreach($jsondata->list as $i=>$data){
 			$table.="<tr>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".$data->judul."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".implode(' ', array_slice(explode(' ', strip_tags($data->deskripsi)),0,100))." ....</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->image) ? "<img src='".$data->image[0]->signedUrl."' alt='".$data->judul."' />" : '-')."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( $data->satker_id ? $data->satker->nama : "-")."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('berita/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('berita/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a class='text-primary' href='".$data->file[0]->signedUrl."'>".$data->judul."</a>" : $data->judul)."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->subjek ? $data->subjek->nama : '-')."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-")."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->satker ? $data->satker->nama : "-")."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('data/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('data/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
 			</tr>";
 		}
 	}
@@ -46,8 +46,8 @@
         <div class="card">
         	<div class="card-header">
             	<div class="flex justify-between items-center">
-                	<h4 class="card-title">Daftar Berita</h4>
-                	<div class='btn rounded border border-success text-success hover:bg-success hover:text-white' ><a href='<?php echo Yii::app()->createUrl('berita/create');?>'><i class='ri-add-box-line'></i>&nbsp;&nbsp;Tambah Berita</a></div>
+                	<h4 class="card-title">Daftar Data</h4>
+                	<div class='btn rounded border border-success text-success hover:bg-success hover:text-white' ><a href='<?php echo Yii::app()->createUrl('data/create');?>'><i class='ri-add-box-line'></i>&nbsp;&nbsp;Tambah Data</a></div>
                 </div>
             </div>
             
@@ -86,7 +86,7 @@
 <script type="text/javascript">
 	function del(id){
 		$.ajax({
-			url: '<?php echo Yii::app()->createUrl('berita/delete');?>',
+			url: '<?php echo Yii::app()->createUrl('data/delete');?>',
 			data: {'id':id},
 			dataType: 'json',
 			type : 'post',

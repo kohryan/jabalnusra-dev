@@ -2,7 +2,7 @@
 	/* @var $this SiteController */
 	$this->pageTitle=Yii::app()->name;
 
-	$jsondata=json_decode($berita);
+	$jsondata=json_decode($subjek);
 	
 	$totalData=$jsondata->pageInfo->totalRows;
 	$page=( isset($jsondata->pageInfo->page) ? $jsondata->pageInfo->page : (isset($jsondata->pageInfo->offset) ? $jsondata->pageInfo->offset : 1) );
@@ -14,10 +14,9 @@
 	<thead class='bg-slate-50 dark:bg-slate-700'>
 	<tr>
 		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>No</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Judul</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Deskripsi</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Image</th>
-		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Satker</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Subjek</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Icon</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Jumlah Data</th>
 		<th class='border border-primary dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-start'>Aksi</th>
 	</tr>
 	</thead> <tbody>";
@@ -26,11 +25,10 @@
 		foreach($jsondata->list as $i=>$data){
 			$table.="<tr>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".$data->judul."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".implode(' ', array_slice(explode(' ', strip_tags($data->deskripsi)),0,100))." ....</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->image) ? "<img src='".$data->image[0]->signedUrl."' alt='".$data->judul."' />" : '-')."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( $data->satker_id ? $data->satker->nama : "-")."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('berita/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('berita/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".$data->nama."</td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->icon) ? "<img width='60px' src='".$data->icon[0]->signedUrl."' alt='".$data->nama."' />" : '-')."</td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( $data->data)."</td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('subjek/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('subjek/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
 			</tr>";
 		}
 	}
@@ -46,8 +44,8 @@
         <div class="card">
         	<div class="card-header">
             	<div class="flex justify-between items-center">
-                	<h4 class="card-title">Daftar Berita</h4>
-                	<div class='btn rounded border border-success text-success hover:bg-success hover:text-white' ><a href='<?php echo Yii::app()->createUrl('berita/create');?>'><i class='ri-add-box-line'></i>&nbsp;&nbsp;Tambah Berita</a></div>
+                	<h4 class="card-title">Daftar Subjek</h4>
+                	<div class='btn rounded border border-success text-success hover:bg-success hover:text-white' ><a href='<?php echo Yii::app()->createUrl('subjek/create');?>'><i class='ri-add-box-line'></i>&nbsp;&nbsp;Tambah Subjek</a></div>
                 </div>
             </div>
             
@@ -86,7 +84,7 @@
 <script type="text/javascript">
 	function del(id){
 		$.ajax({
-			url: '<?php echo Yii::app()->createUrl('berita/delete');?>',
+			url: '<?php echo Yii::app()->createUrl('subjek/delete');?>',
 			data: {'id':id},
 			dataType: 'json',
 			type : 'post',

@@ -30,7 +30,7 @@
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".implode(' ', array_slice(explode(' ', strip_tags($data->abstraksi)),0,100))." ....</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a href='".$data->file[0]->signedUrl."' target='_blank'>".( isset($data->cover) ? "<img src='".$data->cover[0]->signedUrl."' alt='".$data->judul."' />" : '-')."</a>" : '-')."</td>
 				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".( $data->satker_id ? $data->satker->nama : "-")."</td>
-				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="ri-eye-line"></i>',Yii::app()->createUrl('publikasi/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="ri-edit-2-line"></i>',Yii::app()->createUrl('publikasi/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class=' ri-delete-bin-line'></i></span></td>
+				<td class='border border-primary dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('publikasi/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('publikasi/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
 			</tr>";
 		}
 	}
