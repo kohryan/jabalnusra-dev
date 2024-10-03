@@ -81,6 +81,8 @@
                             </div>';
                         }
                         echo $subjek;
+                    }  else {
+                        echo '<span><em>Belum ada indikator yang dirilis.</em></span>';
                     }
                 ?>
             </div>
@@ -132,7 +134,9 @@
                                 </div>';
                             }
                             echo $listPub;
-                        } 
+                        } else {
+                            echo '<span><em>Belum ada publikasi yang dirilis.</em></span>';
+                        }
                     ?>
                 </div>
             </div>
@@ -193,6 +197,8 @@
                         </div>';
                     }
                     echo $analisis;
+                } else {
+                    echo '<span><em>Belum ada analisis yang dirilis.</em></span>';
                 }
             ?>
         </div>
@@ -278,6 +284,8 @@
                                 </div>';
                             }
                             echo $berita;
+                        } else {
+                            echo '<span><em>Belum ada berita yang dirilis.</em></span>';
                         }
                     ?>
                 </div>
