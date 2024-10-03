@@ -135,24 +135,7 @@ class SiteController extends Controller
 				}
 			}
 		} 
-		// $model=new LoginForm;
-
-		// // if it is ajax validation request
-		// if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		// {
-		// 	echo CActiveForm::validate($model);
-		// 	Yii::app()->end();
-		// }
-
-		// // collect user input data
-		// if(isset($_POST['LoginForm']))
-		// {
-		// 	$model->attributes=$_POST['LoginForm'];
-		// 	// validate user input and redirect to the previous page if valid
-		// 	if($model->validate() && $model->login())
-		// 		$this->redirect(Yii::app()->user->returnUrl);
-		// }
-		// display the login form
+		
 		$this->render('login',array('loginUrl'=>$google_client->createAuthUrl()));//,array('model'=>$model));
 	}
 
@@ -161,6 +144,12 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+		//Include Google Client Library for PHP autoload file
+		require_once(Yii::getPathOfAlias('vendor') . '/autoload.php');
+		require_once(Yii::getPathOfAlias('config') . '/gconfig.php');
+		
+		//Reset OAuth access token
+		$google_client->revokeToken();
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
