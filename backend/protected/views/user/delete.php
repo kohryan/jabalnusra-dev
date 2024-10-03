@@ -1,6 +1,6 @@
 <?php
 	function delete($id){
-		$url = 'https://app.nocodb.com/api/v2/tables/mw4b79m61mgt01s/records';
+		$url = 'https://app.nocodb.com/api/v2/tables/mws4ccim69pi1gy/records';
 
 		// Data to be sent in the DELETE request
 		$data = array(

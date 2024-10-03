@@ -7,6 +7,7 @@ class User extends CFormModel
     public $salt; // Attribute for the uploaded file
     public $role; // Attribute for the uploaded file
     public $satker; // Attribute for the uploaded file
+    public $email; // Attribute for the uploaded file
 
     private $project_id = 'pb4s8zh6oda0g65';
     private $table_id = 'mw4b79m61mgt01s';
@@ -16,10 +17,10 @@ class User extends CFormModel
 
     public $field=array(
         "username"  => "",
+        "email"  => "",
         "password"  => "",
-        "salt"      => "",
         "role"      => "",
-        "satker"    => "",
+        "satker_id"    => "",
     );
 
     public function rules()
@@ -188,6 +189,35 @@ class User extends CFormModel
 
 		// Close cURL session
 		curl_close($ch);
+    }
+
+    public function satker($limit=50,$page=1){
+        $offset=($page- 1 ) * $limit;
+        $curl = curl_init();
+
+		curl_setopt_array($curl, [
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mzid8azwl57hq6p/records?offset=".$offset."&limit=".$limit,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => [
+				'xc-token: ' . $this->xc_token
+			],
+		]);
+		
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		
+		curl_close($curl);
+		
+		if ($err) {
+			return null;
+		} else {
+			return $response;
+		}
     }
 }
 ?>

@@ -17,7 +17,10 @@ return array(
 		'application.models.*',
 		'application.components.*',
 	),
-
+	'aliases' => array(
+		'vendor' => realpath(__DIR__ . '/../../vendor'),
+		'config' => 'application.config',  // This creates an alias 'config' pointing to the 'protected/config' directory
+	),
 	'modules'=>array(
 		
 	),

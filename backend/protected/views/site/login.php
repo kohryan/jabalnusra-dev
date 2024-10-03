@@ -1,53 +1,28 @@
-<?php
-/* @var $this SiteController */
-/* @var $model LoginForm */
-/* @var $form CActiveForm  */
+<div
+    class="bg-white lg:max-w-[480px] z-10 p-12 relative w-full h-full border-t-[3px] border-primary dark:bg-gray-800">
+    <div class="flex flex-col h-full gap-4">
+        <div class="my-auto">
+			<div class="mb-8 text-center lg:text-start bg-black">
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>" class="flex justify-center lg:justify-start">
+					<img
+						src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"
+						alt="logo"
+						class="hidden dark:block">
+					<img
+						src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-dark.png"
+						alt="logo"
+						class="block dark:hidden">
+				</a>
+			</div>
 
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
-?>
+            <!-- title-->
+            <div class=" text-center mb-5">
+                <a href="<?php echo $loginUrl;?>"  class="btn bg-danger text-white w-full" type="submit"><i class="ri-login-box-line me-1"></i>Masuk dengan Google</a>
+            </div>
 
-<h1>Login</h1>
-
-<p>Please fill out the following form with your login credentials:</p>
-
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
-	'enableClientValidation'=>true,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
-	</div>
-
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-</div><!-- form -->
+			<div class=" text-center mb-5">
+                <button class="btn bg-primary text-white w-full" type="submit"><i class="ri-login-box-line me-1"></i>Registrasi dengan Google</button>
+            </div>
+        </div>
+    </div>
+</div>

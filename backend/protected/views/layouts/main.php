@@ -134,7 +134,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="<?php echo Yii::app()->createUrl('pengguna/index'); ?>" class="menu-link">
+                        <a href="<?php echo Yii::app()->createUrl('user/index'); ?>" class="menu-link">
 							<span class="menu-icon"><i class=" ri-customer-service-2-line"></i></span>
                             <span class="menu-text">Pengguna</span>
                         </a>
@@ -213,8 +213,8 @@
                     <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/users/avatar-1.jpg" alt="user-image" class="rounded-full h-8">
                         <span class="md:flex flex-col gap-0.5 text-start hidden">
-                            <h5 class="text-sm">Tosha Minner</h5>
-                            <span class="text-xs">Founder</span>
+                            <h5 class="text-sm"><?php echo Yii::app()->user->name;?></h5>
+                            <span class="text-xs"><?php echo Yii::app()->user->satker;?></span>
                         </span>
                     </button>
 
