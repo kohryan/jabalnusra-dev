@@ -3,6 +3,9 @@
 #yii
 /backend/assets/*
 /backend/protected/runtime/*
+/backend/protected/config/gconfig.php
+/backend/vendor/*
+/backend/composer.lock
 
 # dependencies
 /node_modules
