@@ -50,15 +50,12 @@ class UserController extends Controller
 
 		if(isset($_POST['User'])){
 			$model->attributes=$_POST['User'];
-			$username=$_POST['User']['username'];
-			$password=$_POST['User']['password'];
-			
+			$username=$_POST['User']['username'];			
 			$role=$_POST['User']['role'];
 			$satker_id=$_POST['User']['satker'];
 
 			$data=array(
 				'username'=>$username,
-				'password'=>$password,
 				'role'=>$role,
 				'satker_id'=>$satker_id
 			);
@@ -85,16 +82,13 @@ class UserController extends Controller
 
 		if(isset($_POST['User'])){
 			$model->attributes=$_POST['User'];
-			$username=$_POST['User']['username'];
-			$password=$_POST['User']['password'];
-		
+			$username=$_POST['User']['username'];		
 			$role=$_POST['User']['role'];
 			$satker_id=$_POST['User']['satker'];
 
 			$data=array(
 				"Id"	=> $id,
 				'username'=>$username,
-				'password'=>$password,
 				'role'=>$role,
 				'satker_id'=>$satker_id
 			);

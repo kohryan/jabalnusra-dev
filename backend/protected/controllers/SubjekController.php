@@ -28,8 +28,12 @@ class SubjekController extends Controller
 	public function actionIndex()
 	{
 		$model=new Subjek;
-		$subjek=$model->list(10,0); //limit,page
-		$this->render('list',array('subjek'=>$subjek));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$subjek=$model->list(10,$page); //limit,page
+		$this->render('list',array('subjek'=>$subjek,'page'=>$page));
 	}
 
 	public function actionCreate(){

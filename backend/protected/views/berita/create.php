@@ -1,9 +1,21 @@
-<link href="<?php echo Yii::app()->request->baseUrl; ?>/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css">
-<style>
-	.dropzone{min-height:230px;border-radius:.375rem;border-width:2px;border-style:dashed;--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity));background-color:transparent}:is([data-mode=dark] .dropzone){--tw-border-opacity:1;border-color:rgb(75 85 99 / var(--tw-border-opacity))}
-	[type=file]{background:unset;border-color:inherit;border-width:0;border-radius:0;font-size:unset;line-height:inherit}[type=file]:focus{outline:ButtonText solid 1px;outline:-webkit-focus-ring-color auto 1px}
-</style>
 <main class="p-6">
+	<!-- Page Title Start -->
+	<div class="flex justify-between items-center mb-6">
+		<h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Tambah Berita Baru</h4>
+
+		<div class="md:flex hidden items-center gap-2.5 font-semibold">
+			<div class="flex items-center gap-2">
+				<a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400">Beranda</a>
+			</div>
+
+			<div class="flex items-center gap-2">
+				<i class="ri-arrow-right-s-line text-base text-slate-400 rtl:rotate-180"></i>
+				<a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400" aria-current="page">Tambah Berita Baru</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page Title End -->
+
     <div class="flex flex-col gap-6">
 		<div class="card">
 			<div class="card-header">

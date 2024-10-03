@@ -28,8 +28,12 @@ class BeritaController extends Controller
 	public function actionIndex()
 	{
 		$model=new Berita;
-		$berita=$model->list(10,0); //limit,page
-		$this->render('list',array('berita'=>$berita));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$berita=$model->list(10,$page); //limit,page
+		$this->render('list',array('berita'=>$berita,'page'=>$page));
 	}
 
 	public function actionCreate(){
@@ -42,8 +46,8 @@ class BeritaController extends Controller
 			$data=array(
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"image"     => ""
 			);
 
@@ -76,8 +80,8 @@ class BeritaController extends Controller
 				"Id"		=> $id,
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"image"     => ""
 			);
 

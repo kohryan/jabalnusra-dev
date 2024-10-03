@@ -19,10 +19,6 @@
             <div class=" text-center mb-5">
                 <a href="<?php echo $loginUrl;?>"  class="btn bg-danger text-white w-full" type="submit"><i class="ri-login-box-line me-1"></i>Masuk dengan Google</a>
             </div>
-
-			<div class=" text-center mb-5">
-                <button class="btn bg-primary text-white w-full" type="submit"><i class="ri-login-box-line me-1"></i>Registrasi dengan Google</button>
-            </div>
         </div>
     </div>
 </div>

@@ -17,8 +17,6 @@ class User extends CFormModel
 
     public $field=array(
         "username"  => "",
-        "email"  => "",
-        "password"  => "",
         "role"      => "",
         "satker_id"    => "",
     );
@@ -26,7 +24,7 @@ class User extends CFormModel
     public function rules()
     {
         return [
-            ['username,password,salt,role,satker','required'],
+            ['username,role,satker','required'],
         ];
     }
 

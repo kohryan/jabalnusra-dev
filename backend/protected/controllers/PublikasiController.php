@@ -28,8 +28,12 @@ class PublikasiController extends Controller
 	public function actionIndex()
 	{
 		$model=new Publikasi;
-		$publikasi=$model->list(10,0); //limit,page
-		$this->render('list',array('publikasi'=>$publikasi));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$publikasi=$model->list(10,$page); //limit,page
+		$this->render('list',array('publikasi'=>$publikasi,'page'=>$page));
 	}
 
 	public function actionCreate(){
@@ -42,8 +46,8 @@ class PublikasiController extends Controller
 			$data=array(
 				"judul"     => $judul,
 				"abstraksi" => $abstraksi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
         		"cover"     => ""
 			);
@@ -88,8 +92,8 @@ class PublikasiController extends Controller
 				"Id"		=> $id,
 				"judul"     => $judul,
 				"abstraksi" => $abstraksi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
         		"cover"     => ""
 			);

@@ -1,4 +1,24 @@
 <main class="p-6">
+	<!-- Page Title Start -->
+	<div class="flex justify-between items-center mb-6">
+		<h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Tambah User</h4>
+
+		<div class="md:flex hidden items-center gap-2.5 font-semibold">
+			<div class="flex items-center gap-2">
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>" class="text-sm font-medium text-slate-700 dark:text-slate-400">Beranda</a>
+			</div>
+			<div class="flex items-center gap-2">
+				<i class="ri-arrow-right-s-line text-base text-slate-400 rtl:rotate-180"></i>
+				<a href="<?php echo Yii::app()->createUrl('user/index');?>" class="text-sm font-medium text-slate-700 dark:text-slate-400" aria-current="page">Pengguna</a>
+			</div>
+			<div class="flex items-center gap-2">
+				<i class="ri-arrow-right-s-line text-base text-slate-400 rtl:rotate-180"></i>
+				<a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400" aria-current="page">Tambah User</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page Title End -->
+
     <div class="flex flex-col gap-6">
 		<div class="card">
 			<div class="card-header">
@@ -20,12 +40,6 @@
 						<?php echo $form->labelEx($model, 'username'); ?>
 						<?php echo $form->TextField($model, 'username',array("class"=>"form-input")); ?>
 						<?php echo $form->error($model, 'username'); ?>
-					</div>
-
-					<div class="mb-3">
-						<?php echo $form->labelEx($model, 'password'); ?>
-						<?php echo $form->TextField($model, 'password',array("class"=>"form-input")); ?>
-						<?php echo $form->error($model, 'password'); ?>
 					</div>
 
 					<div class="mb-3">

@@ -28,8 +28,12 @@ class DataController extends Controller
 	public function actionIndex()
 	{
 		$model=new Data;
-		$data=$model->list(10,0); //limit,page
-		$this->render('list',array('data'=>$data));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$data=$model->list(10,$page); //limit,page
+		$this->render('list',array('data'=>$data,'page'=>$page));
 	}
 
 	public function actionCreate(){
@@ -52,8 +56,8 @@ class DataController extends Controller
 			$data=array(
 				"judul"   => $judul,
 				"file"     => "",
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"subjek"     => $subjek
 			);
 
@@ -85,8 +89,8 @@ class DataController extends Controller
 				"Id"	=> $id,
 				"judul"   => $judul,
 				"file"     => "",
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"subjek"     => $subjek
 			);
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
