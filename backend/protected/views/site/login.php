@@ -5,7 +5,7 @@
 			<div class="mb-8 text-center lg:text-start bg-black">
 				<a href="<?php echo Yii::app()->request->baseUrl; ?>" class="flex justify-center lg:justify-start">
 					<img
-						src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png"
+						src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-konreg-jabalnusra.png"
 						alt="logo"
 						class="hidden dark:block">
 					<img
