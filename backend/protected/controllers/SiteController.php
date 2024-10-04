@@ -30,7 +30,28 @@ class SiteController extends Controller
 		if(Yii::app()->user->isGuest){
 			$this->redirect(array('login'));
 		} 
-		$this->render('index');
+
+		$analisis=new Analisis;
+		$berita=new Berita;
+		$publikasi=new Publikasi;
+		$data=new Data;
+		
+		$nAnalaisis=$analisis->count();
+		$nBerita=$berita->count();
+		$nPublikasi=$publikasi->count();
+		$nData=$data->count();
+
+		$_data=array(
+			'analisis'=>$nAnalaisis,
+			'berita'=>$nBerita,
+			'publikasi'=>$nPublikasi,
+			'data'=>$nData,
+		);
+		if(Yii::app()->user->role=='SUPERADMIN') { 
+			$user=new User;
+			$_data['user']=$user->count();
+		}
+		$this->render('index',$_data);
 	}
 
 	public function actionBerita(){

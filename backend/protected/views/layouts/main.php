@@ -119,7 +119,7 @@
                             <span class="menu-text">Daftar Data</span>
                         </a>
                     </li>
-
+                    <?php if(Yii::app()->user->role=='SUPERADMIN') { ?>
 					<li class="menu-title">Master</li>
                     <li class="menu-item">
                         <a href="<?php echo Yii::app()->createUrl('subjek/index'); ?>" class="menu-link">
@@ -139,6 +139,7 @@
                             <span class="menu-text">Pengguna</span>
                         </a>
                     </li>
+                    <?php } ?>
                 </ul>
 
             </div>

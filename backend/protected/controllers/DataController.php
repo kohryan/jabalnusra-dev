@@ -63,8 +63,9 @@ class DataController extends Controller
 				"file"     => "",
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
-				"subjek"     => $subjek
+				"subjek-data_id"     => $subjek
 			);
+
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
@@ -86,6 +87,16 @@ class DataController extends Controller
 
 	public function actionUpdate($id){
 		$model=new Data;
+		$subjek=$model->subjek();
+		
+		$optionSubjek=array();
+		if($subjek){
+			$datasubjek=json_decode($subjek);
+			foreach($datasubjek->list as $data){
+				$optionSubjek[$data->Id]=CHtml::decode($data->nama);
+			}
+		}
+
 		if(isset($_POST['Data'])){
 			$model->attributes=$_POST['Data'];
 			$judul=$_POST['Data']['judul'];
@@ -96,7 +107,7 @@ class DataController extends Controller
 				"file"     => "",
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
-				"subjek"     => $subjek
+				"subjek-data_id"     => $subjek
 			);
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
@@ -116,12 +127,13 @@ class DataController extends Controller
 
 		$data_data=$model->findById($id);
 		if($data_data){
-			$data=json_decode($data_data);
-			$oldFile=( isset($data->file) ? $data->file[0]->signedUrl : null);
-			$model->judul=$data->judul;
+			$data=json_decode($data_data,true);
+			$oldFile=( isset($data['file']) ? $data['file'][0]['signedUrl'] : null);
+			$model->judul=$data['judul'];
+			$model->subjek=$data['subjek-data_id'];
 			$model->file=$oldFile;
 		}
-		$this->render('create',array('model'=>$model));
+		$this->render('create',array('model'=>$model,'optionSubjek'=>$optionSubjek));
 	}
 
 	public function actionDelete(){

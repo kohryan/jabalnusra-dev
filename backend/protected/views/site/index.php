@@ -17,15 +17,15 @@ $this->pageTitle=Yii::app()->name;
 	</div>
 </div>
 <!-- Page Title End -->
-
-<div class="grid 2xl:grid-cols-5 lg:grid-cols-6 md:grid-cols-2 gap-6 mb-6">
+<?php $superadmin=( Yii::app()->user->role=='SUPERADMIN' ? true : false); ?>
+<div class="grid 2xl:grid-cols-<?php echo($superadmin ? '5' : '4');?> lg:grid-cols-<?php echo($superadmin ? '5' : '4');?> md:grid-cols-2 gap-6 mb-6">
 	<div class="2xl:col-span-1 lg:col-span-2">
 		<div class="card">
 			<div class="p-6">
 				<div class="flex justify-between">
 					<div class="grow overflow-hidden">
 						<h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Customers">Berita</h5>
-						<h3 class="text-2xl my-6">54,214</h3>
+						<h3 class="text-2xl my-6"><?php echo $berita;?></h3>
 					</div>
 				</div>
 			</div> <!-- end p-6-->
@@ -38,7 +38,7 @@ $this->pageTitle=Yii::app()->name;
 				<div class="flex justify-between">
 					<div class="grow overflow-hidden">
 						<h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Number of Orders">Publikasi</h5>
-						<h3 class="text-2xl my-6">7,543</h3>
+						<h3 class="text-2xl my-6"><?php echo $publikasi;?></h3>
 					</div>
 				</div>
 			</div> <!-- end p-6-->
@@ -51,7 +51,7 @@ $this->pageTitle=Yii::app()->name;
 				<div class="flex justify-between">
 					<div class="grow overflow-hidden">
 						<h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Average Revenue">Pojok Analisis</h5>
-						<h3 class="text-2xl my-6">$9,254</h3>
+						<h3 class="text-2xl my-6"><?php echo $analisis;?></h3>
 					</div>
 				</div>
 
@@ -65,7 +65,7 @@ $this->pageTitle=Yii::app()->name;
 				<div class="flex justify-between">
 					<div class="grow overflow-hidden">
 						<h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Growth">Data Tabular</h5>
-						<h3 class="text-2xl my-6">+ 20.6%</h3>
+						<h3 class="text-2xl my-6"><?php echo $data;?></h3>
 					</div>
 				</div>
 
@@ -73,19 +73,21 @@ $this->pageTitle=Yii::app()->name;
 		</div> <!-- end card-->
 	</div>
 
+	<?php if(Yii::app()->user->role=='SUPERADMIN') { ?>
 	<div class="2xl:col-span-1 lg:col-span-3 md:col-span-2">
 		<div class="card">
 			<div class="p-6">
 				<div class="flex justify-between">
 					<div class="grow overflow-hidden">
 						<h5 class="text-base/3 text-gray-400 font-normal mt-0" title="Conversation Ration">User</h5>
-						<h3 class="text-2xl my-6">9.62%</h3>
+						<h3 class="text-2xl my-6"><?php echo $user;?></h3>
 					</div>
 				</div>
 
 			</div> <!-- end p-6-->
 		</div> <!-- end card-->
 	</div>
+	<?php } ?>
 </div>
 
 </main>

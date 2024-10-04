@@ -113,7 +113,7 @@ class UserController extends Controller
 			$model->satker=$data->satker_id;
 		}
 
-		$this->render('create',array('model'=>$model));
+		$this->render('create',array('model'=>$model,'optionSatker'=>$optionSatker));
 	}
 
 	public function actionDelete(){

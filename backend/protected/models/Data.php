@@ -17,7 +17,7 @@ class Data extends CFormModel
         "file" => "",
         "satker_id" => "",
         "user_id"   => "",
-        "subjek"     => ""
+        "subjek-data_id"     => ""
     );
 
     public function rules()
@@ -33,7 +33,7 @@ class Data extends CFormModel
         $curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$this->table_id}/records?offset=".$offset."&limit=".$limit,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$this->table_id}/records?offset=".$offset."&limit=".$limit.( Yii::app()->user->role=="SUPERADMIN" ? "" : "&where=(satker_id,eq,".Yii::app()->user->satker_id.")"),
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -254,6 +254,35 @@ class Data extends CFormModel
 			return null;
 		} else {
 			return $response;
+		}
+    }
+
+    public function count(){
+        $curl = curl_init();
+
+		curl_setopt_array($curl, [
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$this->table_id}/records/count".( Yii::app()->user->role=="SUPERADMIN" ? "" : "?where=(satker_id,eq,".Yii::app()->user->satker_id.")"),
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => [
+				'xc-token: ' . $this->xc_token
+			],
+		]);
+		
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		
+		curl_close($curl);
+		
+		if ($err) {
+			return 0;
+		} else {
+			$respon=json_decode($response);
+            if($respon) return $respon->count;
 		}
     }
 }
