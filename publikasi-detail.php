@@ -30,7 +30,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                    <a href="publikasi.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="publikasi.php" class="text-main-two-600 flex-align gap-8">
                         Publikasi
                     </a>
                 </li>

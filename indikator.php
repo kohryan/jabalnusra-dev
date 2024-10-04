@@ -22,7 +22,7 @@
       <h6 class="mb-0">Indikator Statistik</h6>
       <ul class="flex-align gap-8 flex-wrap">
         <li class="text-sm">
-          <a href="index.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+          <a href="index.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
           <i class="ph ph-house"></i>Beranda</a>
         </li>
         <li class="flex-align">
@@ -59,7 +59,7 @@
                   foreach($jsonListData->list as $k=>$data_indikator){
                     $trTable.='<tr>
                             <td><a href="indikator-detail.php?id='.$data_indikator->Id.'">'.$data_indikator->judul.'</a></td>
-                            <td><a href="indikator-detail.html">'.( $data->UpdatedAt ? date('d F Y', strtotime($data->UpdatedAt)) : "-").'</a></td>
+                            <td><a href="#">'.( $data->UpdatedAt ? date('d F Y', strtotime($data->UpdatedAt)) : "-").'</a></td>
                           </tr>';
                   }
                 }

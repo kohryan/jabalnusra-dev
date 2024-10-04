@@ -29,7 +29,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                    <a href="pojok-analisis.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="pojok-analisis.php" class="text-main-two-600 flex-align gap-8">
                         Pojok Analisis
                     </a>
                 </li>

@@ -23,7 +23,7 @@
             <h6 class="mb-0">Berita</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
-                    <a href="index.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="index.php" class="text-main-two-600 flex-align gap-8">
                         <i class="ph ph-house"></i>
                         Beranda
                     </a>
@@ -32,7 +32,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                    <a href="berita.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="berita.php" class="text-main-two-600 flex-align gap-8">
                         Berita
                     </a>
                 </li>

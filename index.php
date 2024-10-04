@@ -48,7 +48,7 @@
             <div class="flex-between flex-wrap gap-8">
                 <h5 class="mb-0">Indikator Statistik</h5>
                 <div class="flex-align gap-16">
-                    <a href="publikasi.html" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline"> Lihat Selengkapnya</a>
+                    <a href="publikasi.php" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline"> Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
             <div class="flex-between flex-wrap gap-8">
                 <h5 class="mb-0">Pojok Analisis</h5>
                 <div class="flex-align gap-16">
-                    <a href="pojok-analisis.html" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline">Lihat Selengkapnya</a>
+                    <a href="pojok-analisis.php" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline">Lihat Selengkapnya</a>
                     <div class="flex-align gap-8">
                         <button type="button" id="organic-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-700 hover-text-white transition-1">
                             <i class="ph ph-caret-left"></i>
@@ -213,7 +213,7 @@
             <div class="flex-between flex-wrap gap-8">
                 <h5 class="mb-0">Berita</h5>
                 <div class="flex-align gap-16">
-                    <a href="berita.html" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline">Lihat Semua Berita</a>
+                    <a href="berita.php" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline">Lihat Semua Berita</a>
                     <div class="flex-align gap-8">
                         <button type="button" id="deals-prev" class="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-700 hover-text-white transition-1">
                             <i class="ph ph-caret-left"></i>

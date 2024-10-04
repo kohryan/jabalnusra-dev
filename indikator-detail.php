@@ -24,7 +24,7 @@
             <h6 class="mb-0">Indikator Statistik</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
-                    <a href="index.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+                    <a href="index.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
                         <i class="ph ph-house"></i>
                         Beranda
                     </a>
@@ -33,7 +33,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                  <a href="indikator.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+                  <a href="indikator.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
                       Indikator Statistik
                   </a>
                 </li>
