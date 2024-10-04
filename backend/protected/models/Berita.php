@@ -23,7 +23,7 @@ class Berita extends CFormModel
     public function rules()
     {
         return [
-            ['file', 'file', 'types' => 'jpg, jpeg, png, pdf', 'maxSize' => 2 * 1024 * 1024, 'allowEmpty' => true],
+            ['file', 'file', 'types' => 'jpg, jpeg, png, pdf, JPG', 'maxSize' => 2 * 1024 * 1024, 'allowEmpty' => true],
             ['judul,deskripsi','required'],
         ];
     }

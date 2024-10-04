@@ -34,7 +34,7 @@
         <div class="app-menu">
 
             <!-- App Logo -->
-            <a href="index.html" class="logo-box">
+            <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                 <!-- Light Logo -->
                 <div class="logo-light">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
@@ -156,7 +156,7 @@
             <header class="app-header flex items-center px-4 gap-3.5">
 
                 <!-- App Logo -->
-                <a href="index.html" class="logo-box">
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                     <!-- Light Logo -->
                     <div class="logo-light">
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
