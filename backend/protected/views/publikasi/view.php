@@ -13,7 +13,7 @@
                     	<?php echo ($data->user_id ? $data->user->username." - " : '').( $data->satker_id ? $data->satker->nama : "-");?>
                     </div>
                     <div class="">
-					<?php echo ( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-");?>
+					<?php echo ( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-");?>
                     </div>
                 </div>
                 <div class="flex justify-between mb-6 gap-4">

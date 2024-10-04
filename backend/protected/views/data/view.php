@@ -23,7 +23,7 @@
                             $table.="<tr>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a class='text-primary' href='".$data->file[0]->signedUrl."'>".$data->judul."</a>" : $data->judul)."</td>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->subjek ? $data->subjek->nama : '-')."</td>
-                                <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-")."</td>
+                                <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-")."</td>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->satker ? $data->satker->nama : "-")."</td>
                                 </tr>";
                             $table.="</tbody></table>";

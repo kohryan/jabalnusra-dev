@@ -65,7 +65,7 @@
                                 <div class="flex-align flex-wrap gap-8">
                                     <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
                                     <span class="text-sm text-gray-500">
-                                        <a href="#" class="text-gray-500 hover-text-main-two-600"><?php echo ( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-");?></a>
+                                        <a href="#" class="text-gray-500 hover-text-main-two-600"><?php echo ( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-");?></a>
                                     </span>
                                 </div>
                                 <div class="flex-align flex-wrap gap-8">
@@ -111,7 +111,7 @@
                                         <div class="flex-align flex-wrap gap-8">
                                             <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
                                             <span class="text-sm text-gray-500">
-                                                <a href="berita-detail.php?id='.$data->Id.'" class="text-gray-500 hover-text-main-two-600">'.( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-").'</a>
+                                                <a href="berita-detail.php?id='.$data->Id.'" class="text-gray-500 hover-text-main-two-600">'.( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-").'</a>
                                             </span>
                                         </div>
                                     </div>
