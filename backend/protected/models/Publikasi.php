@@ -248,7 +248,7 @@ class Publikasi extends CFormModel
         $curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$this->table_id}/records/count".( Yii::app()->user->role=="SUPERADMIN" ? "" : "?where=(satker_id,eq,".Yii::app()->user->satker_id.")"),
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$this->table_id}/records/count?sort=-CreatedAt".( Yii::app()->user->role=="SUPERADMIN" ? "" : "&where=(satker_id,eq,".Yii::app()->user->satker_id.")"),
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
