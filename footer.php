@@ -7,7 +7,7 @@
         <div class="footer-item-wrapper d-flex align-items-center flex-center">
             <div class="footer-item">
                 <div class="footer-item__logo align-items-center flex-center">
-                    <a href="index.php"> <img src="assets/images/logo/logo-two.png" alt=""></a>
+                    <a href="index.php"> <img src="assets/images/logo/logo-konreg-jabalnusra.png" alt=""></a>
                 </div>
                 <p class="mb-24 text-black align-items-center flex-center"><b>Sekretariat Konreg PDRB Jabalnusra</b></p>
                 <div class="flex-align gap-16 mb-16">

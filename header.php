@@ -191,7 +191,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title -->
-    <title> Konsultasi Regional PDRB Jabalnusra</title>
+    <title>Konsultasi Regional PDRB Jabalnusra</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.png">
 
@@ -322,7 +322,7 @@
     <button type="button" class="close-button"> <i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
         <a href="index.php" class="mobile-menu__logo">
-            <img src="assets/images/logo/logo-two.png" alt="Logo">
+            <img src="assets/images/logo/logo.png" alt="Logo">
         </a>
         <div class="mobile-menu__menu">
             <!-- Nav Menu Start -->
@@ -355,13 +355,13 @@
     <div class="container container-lg">
         <div class="flex-between flex-wrap gap-8">
             <ul class="flex-align flex-wrap d-none d-md-flex">
-                <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">Tentang</a></li>
-                <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">Hubungi</a></li>
-                <li class="border-right-item"><a href="#shipping" class="text-white text-sm hover-text-decoration-underline">Kebijakan Mutu</a></li>
+                <li class="border-right-item"><a href="#" class="text-white text-sm hover-text-decoration-underline">Tentang</a></li>
+                <li class="border-right-item"><a href="#" class="text-white text-sm hover-text-decoration-underline">Hubungi</a></li>
+                <li class="border-right-item"><a href="#" class="text-white text-sm hover-text-decoration-underline">Kebijakan Mutu</a></li>
             </ul>
         <ul class="header-top__right flex-align flex-wrap">
                 <li class="border-right-item">
-                    <a href="/backend" class="text-white text-sm py-8 flex-align gap-6"> 
+                    <a href="backend" class="text-white text-sm py-8 flex-align gap-6"> 
                         <span class="icon text-md d-flex"> <i class="ph ph-user-circle"></i> </span> 
                         <span class="hover-text-decoration-underline">Login</span>
                      </a>
@@ -446,7 +446,7 @@
                         <!-- Logo Start -->
                         <div class="logo px-16 d-lg-none d-block">
                             <a href="index.php" class="link">
-                                <img src="assets/images/logo/logo-two.png" alt="Logo">
+                                <img src="assets/images/logo/logo.png" alt="Logo">
                             </a>
                         </div>
                         <!-- Logo End -->
