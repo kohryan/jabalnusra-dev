@@ -461,7 +461,7 @@
     
                                 <div class="submenus-submenu py-16">
                                     <h6 class="text-lg px-16 submenus-submenu__title">Badan Pusat Statistik</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                    <ul class="submenus-submenu__list max-h-450 overflow-y-auto scroll-sm">
                                         <li>
                                             <a href="https://bps.go.id">Republik Indonesia</a>
                                         </li>
@@ -495,6 +495,7 @@
                                     </ul>
                                 </div>
                             </li>
+
                             <li class="has-submenus-submenu">
                                 <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                                     <span class="text-xl d-flex"><i class="ph ph-buildings"></i></span>
@@ -503,7 +504,7 @@
                                 </a>
                                 <div class="submenus-submenu py-16">
                                     <h6 class="text-lg px-16 submenus-submenu__title">Bappeda</h6>
-                                    <ul class="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                    <ul class="submenus-submenu__list max-h-450 overflow-y-auto scroll-sm">
                                         <li>
                                             <a href="https://www.bappenas.go.id/">Bappenas RI</a>
                                         </li>
@@ -537,11 +538,98 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            <li class="has-submenus-submenu">
+                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-xl d-flex"><i class="ph ph-buildings"></i></span>
+                                    <span>Kominfo</span>
+                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                </a>
+                                <div class="submenus-submenu py-16">
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Kominfo</h6>
+                                    <ul class="submenus-submenu__list max-h-450 overflow-y-auto scroll-sm">
+                                        <li>
+                                            <a href="https://kominfo.go.id/">Kominfo RI</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.jakarta.go.id">Provinsi DKI Jakarta</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.jabarprov.go.id">Provinsi Jawa Barat</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.jatengprov.go.id">Provinsi Jawa Tengah</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.jogjaprov.go.id">Provinsi DI Yogyakarta</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.jatimprov.go.id">Provinsi Jawa Timur</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.bantenprov.go.id">Provinsi Banten</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.baliprov.go.id">Provinsi Bali</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.ntbprov.go.id">Provinsi Nusa Tenggara Barat</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kominfo.nttprov.go.id/">Provinsi Nusa Tenggara Timur</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
                             <li class="nav-submenu">
                                 <a href="https://www.bi.go.id/id/default.aspx" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
                                     <span class="text-xl d-flex"><i class="ph ph-buildings"></i></span>
                                     <span>Bank Indonesia</span>
                                 </a>
+                            </li>
+                            
+                            <li class="has-submenus-submenu">
+                                <a href="javascript:void(0)" class="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0">
+                                    <span class="text-xl d-flex"><i class="ph ph-buildings"></i></span>
+                                    <span>Kolaborasi Satu Data</span>
+                                    <span class="icon text-md d-flex ms-auto"><i class="ph ph-caret-right"></i></span>
+                                </a>
+                                <div class="submenus-submenu py-16">
+                                    <h6 class="text-lg px-16 submenus-submenu__title">Kolaborasi Satu Data</h6>
+                                    <ul class="submenus-submenu__list max-h-450 overflow-y-auto scroll-sm">
+                                        <li>
+                                            <a href="https://data.go.id/">Satu Data Indonesia</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://satudata.jakarta.go.id/">Provinsi DKI Jakarta</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://opendata.jabarprov.go.id">Provinsi Jawa Barat</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://data.jatengprov.go.id/id/">Provinsi Jawa Tengah</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://bappeda.jogjaprov.go.id/dataku/">Provinsi DI Yogyakarta</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://opendata.jatimprov.go.id">Provinsi Jawa Timur</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://satudata.bantenprov.go.id/beranda/">Provinsi Banten</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://balisatudata.baliprov.go.id/">Provinsi Bali</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://data.ntbprov.go.id/">Provinsi Nusa Tenggara Barat</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://satudatasektoral.nttprov.go.id/">Provinsi Nusa Tenggara Timur</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
