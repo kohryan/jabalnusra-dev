@@ -83,9 +83,10 @@
                 <!-- Search Start -->
                 <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
                     <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Cari Berita</h6>
-                    <form action="#">
+                    <form action="hasil-pencarian.php" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control common-input bg-color-three" placeholder="Searching...">
+                            <input name="konten" type="hidden" value="berita">
+                            <input name="keyword" type="text" class="form-control common-input bg-color-three" placeholder="Searching...">
                             <button type="submit" class="btn btn-main text-2xl h-56 w-56 flex-center text-2xl input-group-text"><i class="ph ph-magnifying-glass"></i></button>
                         </div>
                     </form>

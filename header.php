@@ -183,6 +183,45 @@
 			return $response;
 		}
 	}
+
+    function searchByKeyword($konten,$keyword){
+        $table_id ="";
+        if($konten == "publikasi"){
+            $table_id = 'mfco5l9qyf8fzvs';
+        } else if($konten == "analisis"){
+            $table_id = 'mv3a6vki2zw6byo';
+        } else if($konten == "berita"){
+            $table_id = 'mws4ccim69pi1gy';
+        } else if($konten == "data"){
+            $table_id='mpjp828ddcoy45l';
+        }
+
+        $curl = curl_init();
+
+		curl_setopt_array($curl, [
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$table_id}/records??where=(judul,like,%".$keyword."%)&limit=25&shuffle=0&offset=0",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => [
+				"xc-token: zfzit5j0r0nIGO_QTwhhTEktdzk9RabhNgmI5yn3"
+			],
+		]);
+		
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		
+		curl_close($curl);
+		
+		if ($err) {
+			return null;
+		} else {
+			return $response;
+		}
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" class="">
