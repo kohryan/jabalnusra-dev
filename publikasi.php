@@ -36,6 +36,7 @@
  <section class="shop py-80">
     <div class="container container-lg">
         <div class="row">
+                <?php if($totalData>0){ ?>
                 <!-- Top Start -->
                 <div class="flex-between gap-16 flex-wrap mb-40 ">
                     <span class="text-gray-900"><?php echo "Menampilkan ".( ($offset+1)." - ".( ($totalData>=$itemPerPages) ? ($offset+$itemPerPages) : $totalData) )." dari ".$totalData." publikasi";?></span>
@@ -89,44 +90,26 @@
                     ?>
                 </div>
 
-                <!-- Pagination Start -->
-                <ul class="pagination flex-center flex-wrap gap-16">
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">01</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">02</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">03</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">04</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">05</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">06</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">07</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- Pagination End -->
-            </div>
-            <!-- Content End -->
+                <?php
+                    // <!-- Pagination Start -->
+                    $pagination="";
+                    if( $pages>1 && $pages <=10 ){
+                        $pagination.='<ul class="pagination flex-center flex-wrap gap-16">';
+                        for($i=1;$i<=$pages;$i++){
+                            $pagination.='<li class="page-item '.( ($page==$i) ? 'active' : '' ).'">
+                                <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="?page='.($i).'">'.($i).'</a>
+                            </li>';
+                        }
+                        $pagination.=' </ul>';
+                    } 
+                    echo $pagination;
+                    // <!-- Pagination End -->
+                } else { 
+                    echo '<em>Belum ada publikasi yang dirilis.</em>';
+                }    
+                ?>
 
+                
         </div>
     </div>
  </section>
