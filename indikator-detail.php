@@ -65,11 +65,11 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 flex-wrap">
+        <!-- <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 flex-wrap">
           <div class="input-group rounded">
             <input type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
           </div>
-        </div>
+        </div> -->
       </div>
     
      <div class="col-lg-12 col-md-6 mt-4 mt-lg-0">
