@@ -241,6 +241,20 @@
     
         return null; // Jika tidak ditemukan
     }
+
+    function searching($keyword){
+        $tables= array("publikasi","analisis","berita","indikator");
+        $results=array();
+        foreach($tables as $name){
+            $result=searchByKeyword($name,$keyword);
+            if($result){
+                $results[$name]=$result;
+            } else {
+                $results[$name]=null;
+            }
+        }
+        return $results;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" class="">
@@ -298,16 +312,17 @@
 <!-- ==================== Scroll to Top End Here ==================== -->
 
 <!-- ==================== Search Box Start Here ==================== -->
- <form action="#" class="search-box">
+<form action="searching.php" method="get">
   <button type="button" class="search-box__close position-absolute inset-block-start-0 inset-inline-end-0 m-16 w-48 h-48 border border-gray-100 rounded-circle flex-center text-white hover-text-gray-800 hover-bg-white text-2xl transition-1">
     <i class="ph ph-x"></i>
   </button>
   <div class="container">
     <div class="position-relative">
-      <input type="text" class="form-control py-16 px-24 text-xl rounded-pill pe-64" placeholder="Cari topik penelusuran">
-      <button type="submit" class="w-48 h-48 bg-main-two-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
-        <i class="ph ph-magnifying-glass"></i>
-      </button>
+        
+            <input name="keyword" type="text" class="form-control py-16 px-24 text-xl rounded-pill pe-64" placeholder="Cari topik penelusuran">
+            <button type="submit" class="w-48 h-48 bg-main-two-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8">
+                <i class="ph ph-magnifying-glass"></i>
+            </button>
     </div>
   </div>
  </form>
@@ -381,10 +396,10 @@
             <!-- Logo End  -->
 
             <!-- form location Start -->
-            <form action="#" class="flex-align flex-wrap form-location-wrapper ">
+            <form action="searching.php" method="get" class="flex-align flex-wrap form-location-wrapper ">
                 <div class="search-category d-flex h-48 rounded-pill bg-white d-sm-flex d-none">
                     <div class="search-form__wrapper position-relative">
-                        <input type="text" class="search-form__input common-input py-13 ps-16 pe-18 rounded-pill pe-44" placeholder="Cari topik penelusuran">
+                        <input name="keyword" type="text" class="search-form__input common-input py-13 ps-16 pe-18 rounded-pill pe-44" placeholder="Cari topik penelusuran">
                         <button type="submit" class="w-32 h-32 bg-main-two-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"><i class="ph ph-magnifying-glass"></i></button>
                     </div>
                 </div>
@@ -395,16 +410,16 @@
                         <span class="text-gray-600 text-xs">Pilih Wilayah</span>
                         <div class="line-height-1">
                             <select class="js-example-basic-single border border-gray-200 border-end-0" name="state">
-                                <option value="1">Jabalnusra</option>
+                                <option value="0">Jabalnusra</option>
                                 <option value="1">DKI Jakarta</option>
-                                <option value="1">Jawa Barat</option>
-                                <option value="1">Jawa Tengah</option>
-                                <option value="1">DI Yogyakarta</option>
-                                <option value="1">Jawa Timur</option>
-                                <option value="1">Banten</option>
-                                <option value="1">Bali</option>
-                                <option value="1">Nusa Tenggara Barat</option>
-                                <option value="1">Nusa Tenggara Timur</option>
+                                <option value="2">Jawa Barat</option>
+                                <option value="3">Jawa Tengah</option>
+                                <option value="4">DI Yogyakarta</option>
+                                <option value="5">Jawa Timur</option>
+                                <option value="6">Banten</option>
+                                <option value="7">Bali</option>
+                                <option value="8">Nusa Tenggara Barat</option>
+                                <option value="9">Nusa Tenggara Timur</option>
                             </select>
                         </div>
                     </div>
