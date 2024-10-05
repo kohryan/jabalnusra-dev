@@ -122,7 +122,7 @@
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/m70olwd2gvc9u4k/links/cjldvbirwzgqqyf/records/".$reffId."?sort=-CreatedAt&fields=Id,judul,UpdatedAt&limit=".$limit."&offset=".$offset,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/m70olwd2gvc9u4k/links/cjldvbirwzgqqyf/records/".$reffId."?sort=-CreatedAt&fields=Id,judul,UpdatedAt,CreatedAt&limit=".$limit."&offset=".$offset,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
