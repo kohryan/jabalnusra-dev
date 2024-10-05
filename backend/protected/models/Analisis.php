@@ -19,7 +19,8 @@ class Analisis extends CFormModel
         "satker_id" => "",
         "user_id"   => "",
         "file"     => "",
-        "cover"     => ""
+        "cover"     => "",
+        "namafile"  =>"",
     );
 
     public function rules()

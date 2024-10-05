@@ -56,6 +56,7 @@ class AnalisisController extends Controller
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
+				"namafile"	=> "",
         		"cover"     => ""
 			);
 
@@ -63,9 +64,10 @@ class AnalisisController extends Controller
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/analisis/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}
@@ -112,6 +114,7 @@ class AnalisisController extends Controller
 					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				}
 			} 
