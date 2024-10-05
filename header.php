@@ -4,7 +4,7 @@
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mfco5l9qyf8fzvs/records?offset=".$offset."&limit=".$limit,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mfco5l9qyf8fzvs/records?sort=-CreatedAt&offset=".$offset."&limit=".$limit,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -35,7 +35,7 @@
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mv3a6vki2zw6byo/records?offset=".$offset."&limit=".$limit,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mv3a6vki2zw6byo/records?sort=-CreatedAt&offset=".$offset."&limit=".$limit,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -64,7 +64,7 @@
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mws4ccim69pi1gy/records?offset=".$offset."&limit=".$limit,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mws4ccim69pi1gy/records?sort=-CreatedAt&offset=".$offset."&limit=".$limit,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -122,7 +122,7 @@
 		$curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/m70olwd2gvc9u4k/links/cjldvbirwzgqqyf/records/".$reffId."?fields=Id,judul,UpdatedAt&limit=".$limit."&offset=".$offset,
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/m70olwd2gvc9u4k/links/cjldvbirwzgqqyf/records/".$reffId."?sort=-CreatedAt&fields=Id,judul,UpdatedAt&limit=".$limit."&offset=".$offset,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -199,7 +199,7 @@
         $curl = curl_init();
 
 		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$table_id}/records??where=(judul,like,%".$keyword."%)&limit=25&shuffle=0&offset=0",
+			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/{$table_id}/records?sort=-CreatedAt&where=(judul,like,%".$keyword."%)&limit=25&shuffle=0&offset=0",
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
