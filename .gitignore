@@ -10,6 +10,7 @@
 /assets/berita/*
 /assets/analisis/*
 /assets/data/*
+/cached/*
 # dependencies
 /node_modules
 /.pnp
