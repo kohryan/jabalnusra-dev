@@ -488,7 +488,7 @@
                         <!-- Logo Start -->
                         <div class="logo px-16 d-lg-none d-block">
                             <a href="index.php" class="link">
-                                <img src="assets/images/logo/logo.png" alt="Logo">
+                                <img src="assets/images/logo/logo-two.png" alt="Logo">
                             </a>
                         </div>
                         <!-- Logo End -->
