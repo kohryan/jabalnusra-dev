@@ -222,6 +222,25 @@
 			return $response;
 		}
     }
+
+    function getFullUrl() {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] === 443 ? 'https://' : 'http://';
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = $_SERVER['REQUEST_URI'];
+   
+        return $protocol . $host . $uri;
+    }
+
+    function findFunction($url) {
+        // Pola regex untuk mencari kata sebelum '-detail.php'
+        $pattern = '/\/([^\/]+)-detail\.php/';
+    
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1]; // Mengembalikan kata yang ditemukan
+        }
+    
+        return null; // Jika tidak ditemukan
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en" class="">
@@ -247,69 +266,7 @@
     <?php } ?>
     <!-- Main css -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <?php if($is_flipbook){ ?>
-        <link rel="stylesheet" type="text/css" href="assets/css/flipbook.style.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-        <!-- Main css -->
-        <link rel="stylesheet" href="assets/css/main.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <!-- Include JS -->
-        <script src="assets/js/flipbook.min.js"></script>
-
-        <script type="text/javascript">
-
-            $(document).ready(function () {
-                $("#read").flipBook({
-                //Layout Setting
-                pdfUrl:'assets/pdf/produk-domestik-regional-bruto-provinsi-jawa-timur-triwulanan-menurut-pengeluaran-2019-2023.pdf',
-                lightBox:true,
-                layout:3,
-                currentPage:{vAlign:"bottom", hAlign:"left"},
-                // BTN SETTING
-                btnShare : {enabled:false},
-                btnPrint : {
-                    hideOnMobile:true
-                },
-                btnDownloadPages : {
-                enabled: false,
-                },
-                btnColor:'rgb(255,120,60)',
-                sideBtnColor:'rgb(255,120,60)',
-                sideBtnSize:60,
-                sideBtnBackground:"rgba(0,0,0,.7)",
-                sideBtnRadius:60,
-                btnSound:{vAlign:"top", hAlign:"left"},
-                btnAutoplay:{vAlign:"top", hAlign:"left"},
-                // SHARING
-                btnShare : {
-                    enabled: true,
-                    title: "Bagikan",
-                    icon: "fa-share-alt"
-                },
-                google_plus : {
-                enabled: false
-                },
-                facebook : {
-                    enabled: true,
-                    url: "Produk Domestik Regional Bruto Provinsi Jawa Timur Triwulanan Menurut Pengeluaran 2019-2023"
-                },
-                email : {
-                    enabled: true,
-                    url: "https://jatim.bps.go.id/id/publication/2024/07/09/0c76c108b99eba80ac81b64c/produk-domestik-regional-bruto-provinsi-jawa-timur-triwulanan-menurut-pengeluaran-2019-2023.html",
-                    title: "Produk Domestik Regional Bruto Provinsi Jawa Timur Triwulanan Menurut Pengeluaran 2019-2023",
-                    description: "Silahkan klik tautan di bawah ini untuk melihat/mengunduh publikasi"
-                },
-                twitter : {
-                    enabled: true,
-                    url: "https://jatim.bps.go.id/id/publication/2024/07/09/0c76c108b99eba80ac81b64c/produk-domestik-regional-bruto-provinsi-jawa-timur-triwulanan-menurut-pengeluaran-2019-2023.html"
-                },
-                pinterest : {
-                enabled: false,
-                }
-            });
-            })
-        </script>
-    <?php } if(isset($is_data)) {?>
+    <?php if(isset($is_data)) {?>
         <link rel="stylesheet" href="assets/css/owl.css">
         <link rel="stylesheet" href="assets/css/animate.css">
     <?php } ?>

@@ -1,5 +1,6 @@
 <?php 
     // footer page
+    echo getFullUrl() ;
 ?>
 <!-- ==================== Footer Start Here ==================== -->
 <footer class="footer py-40 bg-color-two">
@@ -59,7 +60,70 @@
 
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-    <?php if(isset($is_data)) {?>
+    <?php if($is_flipbook && isset($data)){ ?>
+        <link rel="stylesheet" type="text/css" href="assets/css/flipbook.style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+        <!-- Main css -->
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <!-- Include JS -->
+        <script src="assets/js/flipbook.min.js"></script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $("#read").flipBook({
+                //Layout Setting
+                pdfUrl:'assets/<?php echo findFunction(getFullUrl()).'/'.$data->namafile;?>',
+                lightBox:true,
+                layout:3,
+                currentPage:{vAlign:"bottom", hAlign:"left"},
+                // BTN SETTING
+                btnShare : {enabled:false},
+                btnPrint : {
+                    hideOnMobile:true
+                },
+                btnDownloadPages : {
+                enabled: false,
+                },
+                btnColor:'rgb(255,120,60)',
+                sideBtnColor:'rgb(255,120,60)',
+                sideBtnSize:60,
+                sideBtnBackground:"rgba(0,0,0,.7)",
+                sideBtnRadius:60,
+                shadowOpacity: .5,
+                btnSound:{vAlign:"top", hAlign:"left"},
+                btnAutoplay:{vAlign:"top", hAlign:"left"},
+                // SHARING
+                btnShare : {
+                    enabled: true,
+                    title: "Bagikan",
+                    icon: "fa-share-alt"
+                },
+                google_plus : {
+                enabled: false
+                },
+                facebook : {
+                    enabled: true,
+                    url: "<?php echo getFullUrl();?>"
+                },
+                email : {
+                    enabled: true,
+                    url: "<?php echo getFullUrl();?>",
+                    title: "<?php echo $data->judul;?>",
+                    description: "Silahkan klik tautan di bawah ini untuk melihat/mengunduh file"
+                },
+                twitter : {
+                    enabled: true,
+                    url: "<?php echo getFullUrl();?>"
+                },
+                pinterest : {
+                enabled: false,
+                }
+            });
+            })
+        </script>
+    <?php } if(isset($is_data)) {?>
         <script src="assets/js/tabs.js"></script>
         <script src="assets/js/isotope.min.js"></script>
     <?php }?>
