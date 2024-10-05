@@ -6,7 +6,10 @@
 /backend/protected/config/gconfig.php
 /backend/vendor/*
 /backend/composer.lock
-
+/assets/publikasi/*
+/assets/berita/*
+/assets/analisis/*
+/assets/data/*
 # dependencies
 /node_modules
 /.pnp
