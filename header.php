@@ -1,4 +1,26 @@
 <?php
+    $uri = $_SERVER['REQUEST_URI'];
+    $params="";
+    if(isset($_GET)){
+        foreach($_GET as $k=>$v){
+            $params.=$k."_".$v."_";
+        }
+    }
+    
+    $fileCache=findFilename($uri) ? findFilename($uri) : "index";
+    $cache_file = 'cached/'.$fileCache."_".$params.'.html';
+    $cache_time = 12 * 3600; // Cache for 12 hour
+
+    // Check if the cache file exists and is still fresh
+    if (file_exists($cache_file) && (time() - filemtime($cache_file) < $cache_time)) {
+        // Serve the cached file
+        readfile($cache_file);
+        exit;
+    }
+
+    // Start output buffering
+    ob_start();
+
     function getDataPublikasi($page=1,$limit=3){
         $offset=($page - 1) * $limit;
 		$curl = curl_init();
@@ -24,9 +46,7 @@
 		if ($err) {
 			return null;
 		} else {
-            // echo json_encode($response);
 			return $response;
-            // exit();
 		}
 	}
 
@@ -231,6 +251,17 @@
         return $protocol . $host . $uri;
     }
 
+    function findFilename($uri) {
+        // Pola regex untuk mencari kata sebelum '-detail.php'
+        $pattern = '/\/([^\/]+)\.php/';
+    
+        if (preg_match($pattern, $uri, $matches)) {
+            return $matches[1]; // Mengembalikan kata yang ditemukan
+        }
+    
+        return null; // Jika tidak ditemukan
+    }
+
     function findFunction($url) {
         // Pola regex untuk mencari kata sebelum '-detail.php'
         $pattern = '/\/([^\/]+)-detail\.php/';
@@ -312,7 +343,7 @@
 <!-- ==================== Scroll to Top End Here ==================== -->
 
 <!-- ==================== Search Box Start Here ==================== -->
-<form action="searching.php" method="get">
+<form action="searching.php" method="get" class="search-box">
   <button type="button" class="search-box__close position-absolute inset-block-start-0 inset-inline-end-0 m-16 w-48 h-48 border border-gray-100 rounded-circle flex-center text-white hover-text-gray-800 hover-bg-white text-2xl transition-1">
     <i class="ph ph-x"></i>
   </button>

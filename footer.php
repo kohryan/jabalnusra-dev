@@ -1,6 +1,5 @@
 <?php 
     // footer page
-    echo getFullUrl() ;
 ?>
 <!-- ==================== Footer Start Here ==================== -->
 <footer class="footer py-40 bg-color-two">
@@ -129,3 +128,8 @@
     <?php }?>
     </body>
 </html>
+<?php
+// Save the output to the cache file
+file_put_contents($cache_file, ob_get_contents());
+ob_end_flush(); // Send output to the browser
+?>
