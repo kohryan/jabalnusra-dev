@@ -19,14 +19,15 @@ class Publikasi extends CFormModel
         "satker_id" => "",
         "user_id"   => "",
         "file"     => "",
-        "cover"     => ""
+        "cover"     => "",
+        "namafile"  =>"",
     );
 
     public function rules()
     {
         return [
-            ['file', 'file', 'types' => 'pdf', 'maxSize' => 2 * 1024 * 1024, 'allowEmpty' => false , 'on' => 'create'],
-            ['file', 'file', 'types' => 'pdf', 'maxSize' => 2 * 1024 * 1024, 'allowEmpty' => true , 'on' => 'update'],
+            ['file', 'file', 'types' => 'pdf', 'maxSize' => 10 * 1024 * 1024, 'allowEmpty' => false , 'on' => 'create'],
+            ['file', 'file', 'types' => 'pdf', 'maxSize' => 10 * 1024 * 1024, 'allowEmpty' => true , 'on' => 'update'],
             ['cover', 'file', 'types' => 'jpg, jpeg, png', 'maxSize' => 2 * 1024 * 1024, 'allowEmpty' => true],
             ['judul,abstraksi','required'],
         ];

@@ -63,7 +63,8 @@ class DataController extends Controller
 				"file"     => "",
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
-				"subjek-data_id"     => $subjek
+				"subjek-data_id"     => $subjek,
+				"namafile"	=> "",
 			);
 
 
@@ -71,9 +72,10 @@ class DataController extends Controller
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/data/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/data/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/data/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/data/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}
@@ -107,15 +109,17 @@ class DataController extends Controller
 				"file"     => "",
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
-				"subjek-data_id"     => $subjek
+				"subjek-data_id"     => $subjek,
+				"namafile"	=> "",
 			);
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/data/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/data/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/data/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/data/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}

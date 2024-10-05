@@ -17,7 +17,8 @@ class Berita extends CFormModel
         "deskripsi" => "",
         "satker_id" => "",
         "user_id"   => "",
-        "image"     => ""
+        "image"     => "",
+        "namafile"  =>"",
     );
 
     public function rules()

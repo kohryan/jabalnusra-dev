@@ -17,7 +17,8 @@ class Data extends CFormModel
         "file" => "",
         "satker_id" => "",
         "user_id"   => "",
-        "subjek-data_id"     => ""
+        "subjek-data_id"     => "",
+        "namafile"  =>"",
     );
 
     public function rules()

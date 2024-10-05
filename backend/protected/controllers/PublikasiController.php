@@ -55,25 +55,30 @@ class PublikasiController extends Controller
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
-        		"cover"     => ""
+        		"cover"     => "",
+				"namafile"	=> "",
 			);
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
-				} 
+				} else {
+					echo json_encode($model->getErrors());
+					exit();
+				}
 			}
 
 			$uploadedCover = CUploadedFile::getInstance($model, 'cover');
 			$coverpath="";
 			if($uploadedCover){
 				if ($model->validate()) {
-					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedCover->saveAs($coverPath)) {
 						$data['path_cover']=$coverPath;
 					}
@@ -101,14 +106,15 @@ class PublikasiController extends Controller
 				"satker_id" => Yii::app()->user->satker_id,
 				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
-        		"cover"     => ""
+        		"cover"     => "",
+				"namafile"	=> "",
 			);
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
 					}
@@ -119,7 +125,7 @@ class PublikasiController extends Controller
 			$coverpath="";
 			if($uploadedCover){
 				if ($model->validate()) {
-					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedCover->saveAs($coverPath)) {
 						$data['path_cover']=$coverPath;
 					}
