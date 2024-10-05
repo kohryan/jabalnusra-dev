@@ -37,7 +37,7 @@
             <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                 <!-- Light Logo -->
                 <div class="logo-light">
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-konreg-jabalnusra.png" class="logo-lg " alt="Light logo">
+                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
                 </div>
 
@@ -159,7 +159,7 @@
                 <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                     <!-- Light Logo -->
                     <div class="logo-light">
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-konreg-jabalnusra.png" class="logo-lg " alt="Light logo">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-sm.png" class="logo-sm h-[22px]" alt="Small logo">
                     </div>
 
