@@ -192,7 +192,7 @@
             $table_id = 'mv3a6vki2zw6byo';
         } else if($konten == "berita"){
             $table_id = 'mws4ccim69pi1gy';
-        } else if($konten == "data"){
+        } else if($konten == "indikator"){
             $table_id='mpjp828ddcoy45l';
         }
 

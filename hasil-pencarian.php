@@ -18,7 +18,7 @@
 <div class="breadcrumb py-26 bg-color-two">
     <div class="container container-lg">
         <div class="breadcrumb-wrapper flex-between flex-wrap gap-16">
-            <h6 class="mb-0">Berita</h6>
+            <h6 class="mb-0">Hasil Pencarian</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
                     <a href="index.php" class="text-main-two-600 flex-align gap-8">

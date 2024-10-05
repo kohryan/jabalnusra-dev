@@ -39,9 +39,13 @@
 <section id="statistik" class="tabel pb-40">
   <div class="container" data-aos="fade-up">
     <div class="row" data-aos="fade-up" data-aos-delay="100">
-      <div class="input-group rounded py-40">
-        <input type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
-      </div>
+      <form action="hasil-pencarian.php" method="get">
+        <div class="input-group rounded py-40">
+          <input name="konten" type="hidden" value="indikator">
+          <input name="keyword" type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-main flex-center input-group-text"><i class="ph ph-magnifying-glass"></i></button>
+        </div>
+      </form>
      <div class="col-lg-3">
       <ul class="nav nav-tabs flex-column">
         <?php
