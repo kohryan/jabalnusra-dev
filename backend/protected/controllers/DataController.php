@@ -81,6 +81,7 @@ class DataController extends Controller
 			}
 
 			$responses=$model->create($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('create'));
 		}
@@ -125,6 +126,7 @@ class DataController extends Controller
 			}
 
 			$responses=$model->update($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('index'));
 		}
