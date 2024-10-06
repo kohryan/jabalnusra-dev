@@ -95,7 +95,7 @@
     echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js'></script>"; 
     echo " <script>
         // Ganti URL di bawah ini dengan URL file Excel Anda
-        const url = 'assets/data/1.xlsx'; // Path ke file Excel
+        const url = 'assets/data/".$data->namafile."'; // Path ke file Excel
 
         fetch(url)
           .then(response => response.arrayBuffer())
