@@ -28,7 +28,7 @@
 				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
 				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a class='text-primary' href='".$data->file[0]->signedUrl."'>".$data->judul."</a>" : $data->judul)."</td>
 				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->subjek ? $data->subjek->nama : '-')."</td>
-				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-")."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-")."</td>
 				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->satker ? $data->satker->nama : "-")."</td>
 				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-eye-line"></i>',Yii::app()->createUrl('data/view',array("id"=>$data->Id)))."&nbsp;&nbsp;&nbsp;".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('data/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
 			</tr>";
@@ -42,6 +42,22 @@
 ?>
 
 <main class="p-6">
+	<!-- Page Title Start -->
+	<div class="flex justify-between items-center mb-6">
+		<h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Daftar Data</h4>
+
+		<div class="md:flex hidden items-center gap-2.5 font-semibold">
+			<div class="flex items-center gap-2">
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>" class="text-sm font-medium text-slate-700 dark:text-slate-400">Beranda</a>
+			</div>
+
+			<div class="flex items-center gap-2">
+				<i class="ri-arrow-right-s-line text-base text-slate-400 rtl:rotate-180"></i>
+				<a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400" aria-current="page">Daftar Data</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page Title End -->
 	<div class="flex flex-col gap-6">
         <div class="card">
         	<div class="card-header">
@@ -66,7 +82,7 @@
 							$pagination="";
 							if($lastPage <=10 ){
 								for($i=1;$i<=$lastPage;$i++){
-									$pagination.="<a href='?page=".($i)."' class='btn btn-sm bg-light text-dark rounded-none'>".$i."</a>";
+									$pagination.="<a href='?page=".($i)."' class='me-1 btn btn-sm ".( ($page==$i) ? 'bg-primary text-white' : 'bg-light text-dark' )." rounded-none'>".$i."</a>";
 								}
 							} 
 
@@ -80,7 +96,7 @@
 </main>
 
 <?php
-	Yii::app()->clientScript->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', CClientScript::POS_END);
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.min.js', CClientScript::POS_END);
 	Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/libs/loading-overlay/loadingoverlay.js', CClientScript::POS_END);
 ?>
 <script type="text/javascript">

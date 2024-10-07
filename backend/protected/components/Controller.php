@@ -20,4 +20,22 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+
+	public function delete_cache(){
+		$cacheDir = YiiBase::getPathOfAlias("webroot").'/../cached/';
+
+		// Check if the directory exists
+		if (is_dir($cacheDir)) {
+			// Scan the directory for files
+			$files = array_diff(scandir($cacheDir), array('.', '..'));
+
+			foreach ($files as $file) {
+				$filePath = $cacheDir . $file;
+				// Check if it's a file and delete it
+				if (is_file($filePath)) {
+					unlink($filePath);
+				}
+			}
+		} 
+	}
 }

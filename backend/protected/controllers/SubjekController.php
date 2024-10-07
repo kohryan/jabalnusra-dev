@@ -5,18 +5,24 @@ class SubjekController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-	public function actions()
+	public function filters()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','create','update','delete'),
+				'users'=>array('@'),
 			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
+			array('deny',  // deny all users
+				'users'=>array('*'),
 			),
 		);
 	}
@@ -28,8 +34,12 @@ class SubjekController extends Controller
 	public function actionIndex()
 	{
 		$model=new Subjek;
-		$subjek=$model->list(10,0); //limit,page
-		$this->render('list',array('subjek'=>$subjek));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$subjek=$model->list(10,$page); //limit,page
+		$this->render('list',array('subjek'=>$subjek,'page'=>$page));
 	}
 
 	public function actionCreate(){

@@ -22,7 +22,7 @@
       <h6 class="mb-0">Indikator Statistik</h6>
       <ul class="flex-align gap-8 flex-wrap">
         <li class="text-sm">
-          <a href="index.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+          <a href="index.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
           <i class="ph ph-house"></i>Beranda</a>
         </li>
         <li class="flex-align">
@@ -38,39 +38,44 @@
 <!-- ======= Statistik Section ======= -->
 <section id="statistik" class="tabel pb-40">
   <div class="container" data-aos="fade-up">
-
     <div class="row" data-aos="fade-up" data-aos-delay="100">
-      <div class="input-group rounded py-40">
-        <input type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
-      </div>
+      <form action="hasil-pencarian.php" method="get">
+        <div class="input-group rounded py-40">
+          <input name="konten" type="hidden" value="indikator">
+          <input name="keyword" type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
+          <button type="submit" class="btn btn-main flex-center input-group-text"><i class="ph ph-magnifying-glass"></i></button>
+        </div>
+      </form>
      <div class="col-lg-3">
       <ul class="nav nav-tabs flex-column">
         <?php
           $li="";
           $tabContent="";
           if($jsondata->list){
+            $trTable="<tr><td rowspan='2'><em>belum ada data pada indikator ini.</em></td></tr>";
+            if($jsonListData->list){
+              $trTable="";
+              foreach($jsonListData->list as $k=>$data_indikator){
+                $trTable.='<tr>
+                        <td><a href="indikator-detail.php?id='.$data_indikator->Id.'">'.$data_indikator->judul.'</a></td>
+                        <td><a href="#">'.( $data_indikator->UpdatedAt ? date('d F Y', strtotime($data_indikator->UpdatedAt)) : date('d F Y', strtotime($data_indikator->CreatedAt))).'</a></td>
+                      </tr>';
+              }
+            }
+
             foreach($jsondata->list as $i=>$data){
                 $li.='<li class="nav-item">
-                  <a class="nav-link '.( ($id=="" && $i==0) ? 'active show' : (($id==($i+1))? 'active show' : '' )).'" data-bs-toggle="tab" href="#tab-'.$data->Id.'">'.$data->nama.'</a>
+                  <a href="indikator.php?id='.$data->Id.'" class="nav-link '.( ($id=="" && $i==0) ? 'active show' : (($id==($i+1))? 'active show' : '' )).'" ">'.$data->nama.'</a>
                 </li>';
-                $trTable="<tr><td rowspan='2'><em>belum ada data pada indikator ini.</em></td></tr>";
-                if($jsonListData->list){
-                  $trTable="";
-                  foreach($jsonListData->list as $k=>$data_indikator){
-                    $trTable.='<tr>
-                            <td><a href="indikator-detail.php?id='.$data_indikator->Id.'">'.$data_indikator->judul.'</a></td>
-                            <td><a href="indikator-detail.html">'.( $data->UpdatedAt ? date('d F Y', strtotime($data->UpdatedAt)) : "-").'</a></td>
-                          </tr>';
-                  }
-                }
-                $tabContent.='<div class="tab-pane '.( ($id=="" && $i==0) ? 'active show' : (($id==($i+1))? 'active show' : '' )).'" id="tab-'.$data->Id.'">
-                  <div class="row">
+            }
+            echo $li;
+            $tabContent.='<div class="row">
                     <div class="col-lg-12 details order-2 order-lg-1">
                       <div class="table-responsive">
                       <table class="table">
                         <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
                           <tr>
-                            <th scope="col">Indikator '.$data->nama.'</th>
+                            <th scope="col">Indikator</th>
                             <th scope="col">Terakhir Diperbarui</th>
                           </tr>
                         </thead>
@@ -80,10 +85,7 @@
                       </table>
                     </div>
                     </div>
-                  </div>
-                </div>';
-            }
-            echo $li;
+                  </div>';
           }
         ?>
       </ul>

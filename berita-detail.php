@@ -2,6 +2,9 @@
     $is_flipbook=false;
     include("header.php");
     $data="";
+    $berita_terkini= getDataBerita(1,5);
+    $bt=json_decode($berita_terkini);
+
     if(isset($_GET['id'])){
         $id=(int)$_GET['id'];
         $berita=getById("berita",$id);
@@ -20,7 +23,7 @@
             <h6 class="mb-0">Berita</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
-                    <a href="index.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="index.php" class="text-main-two-600 flex-align gap-8">
                         <i class="ph ph-house"></i>
                         Beranda
                     </a>
@@ -29,7 +32,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                    <a href="berita.html" class="text-main-two-600 flex-align gap-8">
+                    <a href="berita.php" class="text-main-two-600 flex-align gap-8">
                         Berita
                     </a>
                 </li>
@@ -62,13 +65,13 @@
                                 <div class="flex-align flex-wrap gap-8">
                                     <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
                                     <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600"><?php echo ( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-");?></a>
+                                        <a href="#" class="text-gray-500 hover-text-main-two-600"><?php echo ( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-");?></a>
                                     </span>
                                 </div>
                                 <div class="flex-align flex-wrap gap-8">
                                     <span class="text-lg text-main-two-600"><i class="ph ph-user"></i></span>
                                     <span class="text-sm text-gray-500">
-                                        <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600"><?php echo ($data->user_id ? $data->user->username." - " : '').( $data->satker_id ? $data->satker->nama : "-");?></a>
+                                        <a href="#" class="text-gray-500 hover-text-main-two-600"><?php echo ($data->user_id ? $data->user->username." - " : '').( $data->satker_id ? $data->satker->nama : "-");?></a>
                                     </span>
                                 </div>
                             </div>
@@ -80,9 +83,10 @@
                 <!-- Search Start -->
                 <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
                     <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Cari Berita</h6>
-                    <form action="#">
+                    <form action="hasil-pencarian.php" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control common-input bg-color-three" placeholder="Searching...">
+                            <input name="konten" type="hidden" value="berita">
+                            <input name="keyword" type="text" class="form-control common-input bg-color-three" placeholder="Searching...">
                             <button type="submit" class="btn btn-main text-2xl h-56 w-56 flex-center text-2xl input-group-text"><i class="ph ph-magnifying-glass"></i></button>
                         </div>
                     </form>
@@ -92,70 +96,31 @@
                 <!-- Recent Post Start -->
                 <div class="blog-sidebar border border-gray-100 rounded-8 p-32 mb-40">
                     <h6 class="text-xl mb-32 pb-32 border-bottom border-gray-100">Berita Terkini</h6>
-                    <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-16">
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
-                            <img src="assets/images/thumbs/recent-post1.png" alt="" class="cover-img">
-                        </a>
-                        <div class="flex-grow-1">
-                            <h6 class="text-lg">
-                                <a href="berita-detail.html" class="text-line-3">Once determined you need to come up with a name</a>
-                            </h6>
-                            <div class="flex-align flex-wrap gap-8">
-                                <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                <span class="text-sm text-gray-500">
-                                    <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-16">
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
-                            <img src="assets/images/thumbs/recent-post2.png" alt="" class="cover-img">
-                        </a>
-                        <div class="flex-grow-1">
-                            <h6 class="text-lg">
-                                <a href="berita-detail.html" class="text-line-3">Once determined you need to come up with a name</a>
-                            </h6>
-                            <div class="flex-align flex-wrap gap-8">
-                                <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                <span class="text-sm text-gray-500">
-                                    <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-16">
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
-                            <img src="assets/images/thumbs/recent-post3.png" alt="" class="cover-img">
-                        </a>
-                        <div class="flex-grow-1">
-                            <h6 class="text-lg">
-                                <a href="berita-detail.html" class="text-line-3">Once determined you need to come up with a name</a>
-                            </h6>
-                            <div class="flex-align flex-wrap gap-8">
-                                <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                <span class="text-sm text-gray-500">
-                                    <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-0">
-                        <a href="berita-detail.html" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
-                            <img src="assets/images/thumbs/recent-post4.png" alt="" class="cover-img">
-                        </a>
-                        <div class="flex-grow-1">
-                            <h6 class="text-lg">
-                                <a href="berita-detail.html" class="text-line-3">Once determined you need to come up with a name</a>
-                            </h6>
-                            <div class="flex-align flex-wrap gap-8">
-                                <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
-                                <span class="text-sm text-gray-500">
-                                    <a href="berita-detail.html" class="text-gray-500 hover-text-main-two-600">30 September 2024</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+    
+                        if($bt->list){
+                            $listBerita="";
+                            foreach($bt->list as $i=>$data){
+                                $listBerita.='<div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-16">
+                                    <a href="berita-detail.php?id='.$data->Id.'" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
+                                        <img src="'.( isset($data->cover) ? $data->cover[0]->signedUrl : "assets/images/berita-no-images.png").'" alt="" class="cover-img">
+                                    </a>
+                                    <div class="flex-grow-1">
+                                        <h6 class="text-lg">
+                                            <a href="berita-detail.php?id='.$data->Id.'" class="text-line-3">'.$data->judul.'</a>
+                                        </h6>
+                                        <div class="flex-align flex-wrap gap-8">
+                                            <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
+                                            <span class="text-sm text-gray-500">
+                                                <a href="berita-detail.php?id='.$data->Id.'" class="text-gray-500 hover-text-main-two-600">'.( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-").'</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>';
+                            }
+                            echo $listBerita;
+                        }
+                    ?>
                 </div>
                 <!-- Recent Post End -->
 

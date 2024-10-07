@@ -56,7 +56,7 @@
                                     <div class="flex-align flex-wrap gap-8">
                                         <span class="text-lg text-main-two-600"><i class="ph ph-calendar-dots"></i></span>
                                         <span class="text-sm text-gray-500">
-                                            <a href="berita-detail.php?id='.$data->Id.'" class="text-gray-500 hover-text-main-two-600">'.( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-").'</a>
+                                            <a href="berita-detail.php?id='.$data->Id.'" class="text-gray-500 hover-text-main-two-600">'.( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-").'</a>
                                         </span>
                                     </div>
                                     <div class="flex-align flex-wrap gap-8">
@@ -72,45 +72,22 @@
                 }
                 echo $listBerita;
             } 
-        ?>
-        
+        	
 
-                 <!-- Pagination Start -->
-                <ul class="pagination flex-center flex-wrap gap-16">
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">01</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">02</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">03</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">04</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">05</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">06</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">07</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link h-48 w-48 flex-center text-xxl rounded-8 fw-medium text-neutral-600 border border-gray-100" href="#">
-                            <i class="ph-bold ph-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- Pagination End -->
-
+            // <!-- Pagination Start -->
+            $pagination="";
+             if( $pages>1 && $pages <=10 ){
+                $pagination.='<ul class="pagination flex-center flex-wrap gap-16">';
+				for($i=1;$i<=$pages;$i++){
+                    $pagination.='<li class="page-item '.( ($page==$i) ? 'active' : '' ).'">
+                        <a class="page-link h-48 w-48 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100" href="?page='.($i).'">'.($i).'</a>
+                    </li>';
+				}
+                $pagination.=' </ul>';
+            } 
+			echo $pagination;
+            // <!-- Pagination End -->
+		?>
             </div>
             
             </div>

@@ -34,7 +34,7 @@
         <div class="app-menu">
 
             <!-- App Logo -->
-            <a href="index.html" class="logo-box">
+            <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                 <!-- Light Logo -->
                 <div class="logo-light">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
@@ -119,7 +119,7 @@
                             <span class="menu-text">Daftar Data</span>
                         </a>
                     </li>
-
+                    <?php if(Yii::app()->user->role=='SUPERADMIN') { ?>
 					<li class="menu-title">Master</li>
                     <li class="menu-item">
                         <a href="<?php echo Yii::app()->createUrl('subjek/index'); ?>" class="menu-link">
@@ -134,11 +134,12 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="<?php echo Yii::app()->createUrl('pengguna/index'); ?>" class="menu-link">
+                        <a href="<?php echo Yii::app()->createUrl('user/index'); ?>" class="menu-link">
 							<span class="menu-icon"><i class=" ri-customer-service-2-line"></i></span>
                             <span class="menu-text">Pengguna</span>
                         </a>
                     </li>
+                    <?php } ?>
                 </ul>
 
             </div>
@@ -155,7 +156,7 @@
             <header class="app-header flex items-center px-4 gap-3.5">
 
                 <!-- App Logo -->
-                <a href="index.html" class="logo-box">
+                <a href="<?php echo Yii::app()->request->baseUrl; ?>" class="logo-box">
                     <!-- Light Logo -->
                     <div class="logo-light">
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo.png" class="logo-lg " alt="Light logo">
@@ -211,19 +212,14 @@
                 <!-- Profile Dropdown Button -->
                 <div class="relative">
                     <button data-fc-type="dropdown" data-fc-placement="bottom-end" type="button" class="nav-link flex items-center gap-2.5 px-3 bg-black/5 border-x border-black/10">
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/users/avatar-1.jpg" alt="user-image" class="rounded-full h-8">
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/users/user.webp" alt="user-image" class="rounded-full h-8">
                         <span class="md:flex flex-col gap-0.5 text-start hidden">
-                            <h5 class="text-sm">Tosha Minner</h5>
-                            <span class="text-xs">Founder</span>
+                            <h5 class="text-sm"><?php echo Yii::app()->user->name;?></h5>
+                            <span class="text-xs"><?php echo Yii::app()->user->satker;?></span>
                         </span>
                     </button>
 
                     <div class="fc-dropdown fc-dropdown-open:opacity-100 hidden opacity-0 w-44 z-50 transition-all duration-300 bg-white shadow-lg border rounded-lg py-2 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                        <!-- item-->
-                        <a href="<?php echo Yii::app()->createUrl('user/profile',array('id'=>5));?>" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
-                            <i class="ri-account-circle-line text-lg align-middle"></i>
-                            <span>My Account</span>
-                        </a>
                         <!-- item-->
                         <a href="<?php echo Yii::app()->createUrl('site/logout');?>" class="flex items-center gap-2 py-1.5 px-4 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300">
                             <i class="ri-logout-box-line text-lg align-middle"></i>
@@ -410,7 +406,6 @@
 
             <div class="h-16 p-4 flex items-center gap-4 border-t border-gray-300 dark:border-gray-600 px-6">
                 <button type="button" class="btn bg-primary text-white w-1/2" id="reset-layout">Reset</button>
-                <button type="button" class="btn bg-light text-dark dark:text-light dark:bg-opacity-10 w-1/2">Buy Now</button>
             </div>
         </div>
     </div>

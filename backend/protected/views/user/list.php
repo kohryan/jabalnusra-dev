@@ -1,46 +1,8 @@
-<html>
-	<head>
-		<title>NOCO DB APPS</title>
-	</head>
-	<body>
 <?php
-	function getData($offset){
-		if(isset($_GET['page'])){
-			$offset=(($_GET['page'])- 1 ) * 25;
-		}
+	/* @var $this SiteController */
+	$this->pageTitle=Yii::app()->name;
 
-		$curl = curl_init();
-
-		curl_setopt_array($curl, [
-			CURLOPT_URL => "https://app.nocodb.com/api/v2/tables/mw4b79m61mgt01s/records?offset=".$offset."&limit=25",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => [
-				"xc-token: zfzit5j0r0nIGO_QTwhhTEktdzk9RabhNgmI5yn3"
-			],
-		]);
-		
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		
-		curl_close($curl);
-		
-		if ($err) {
-			return null;
-		} else {
-			// echo json_encode($response)."<br>";
-			return $response;
-		}
-	}
-
-	// echo '<iframe src="https://wcxz89gr.nocodb.com/#/nc/form/7f34f46c-dd2c-45b5-9dc5-256617366fe7" width="100%" height="50%" style="border: none;"></iframe><br>';
-
-	$listSatker=getData(0);
-	$jsondata=json_decode($listSatker);
+	$jsondata=json_decode($user);
 	
 	$totalData=$jsondata->pageInfo->totalRows;
 	$page=( isset($jsondata->pageInfo->page) ? $jsondata->pageInfo->page : (isset($jsondata->pageInfo->offset) ? $jsondata->pageInfo->offset : 1) );
@@ -48,59 +10,113 @@
 	$pages=ceil($totalData/$itemPerPages);
 	$offset=$page * $itemPerPages;
 	
-	$table="<a href='create.php'>Tambah User</a><br><br><table><tr>
-		<th>No</th>
-		<th>Username</th>
-		<th>Satker</th>
-		<th>Aksi</th>
-	</tr>";
+	$table="<table class='border-collapse min-w-full border border-primary dark:border-slate-600 bg-white dark:bg-slate-800 text-sm shadow-sm'>
+	<thead class='bg-slate-50 dark:bg-slate-700'>
+	<tr>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>No</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Username</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Role</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Instansi</th>
+		<th class='border border-primary dark:border-slate-600 font-semibold p-2 text-slate-900 dark:text-slate-200 text-start'>Aksi</th>
+	</tr>
+	</thead> <tbody>";
 	if($jsondata->list){
 
 		foreach($jsondata->list as $i=>$data){
+			
 			$table.="<tr>
-				<td>".($i + 1)."</td>
-				<td>".$data->username."</td>
-				<td>".( $data->satker_id ? $data->satker->nama : "-")."</td>
-				<td><a href='view.php?id=".$data->Id."'>View</a>&nbsp;&nbsp;&nbsp;<a href=''>Update</a>&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'>Delete</span></td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".($i + 1)."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".$data->username."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".$data->role."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".( $data->satker ? $data->satker->nama : "" )."</td>
+				<td class='border border-primary dark:border-slate-700 p-2 text-slate-500 dark:text-slate-400'>".CHtml::link('<i class="text-primary ri-edit-2-line"></i>',Yii::app()->createUrl('user/update',array('id'=>$data->Id)))."&nbsp;&nbsp;&nbsp;<span style='cursor: pointer;' onClick='del(".$data->Id.");'><i class='text-primary ri-delete-bin-line'></i></span></td>
 			</tr>";
 		}
 	}
-	$table.="</table>";
-	echo $table;
+	$table.="</tbody></table>";
 	
 	$firstPage=1;
 	$lastPage=$pages;
-	$page_list="<table><tr>";
-	if($lastPage <=5 ){
-		for($i=1;$i<=$lastPage;$i++){
-			$page_list.="<td><a href='?page=".($i)."'>".($i)."</a></td>";
-		}
-	} else {
-		$page_list.="<td><a href='?page=".($firstPage)."'>".($firstPage)."</a></td>";
-		for($i=($page-2);$i<=($page+2);$i++){
-			$page_list.="<td><a href='?page=".($i)."'>".($i)."</a></td>";
-		}
-		$page_list.="<td><a href='?page=".($lastPage)."'>".($lastPage)."</a></td>";
-	}
-	$page_list.="</tr></table>";
-	echo $page_list;
+	
 ?>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<main class="p-6">
+	<!-- Page Title Start -->
+	<div class="flex justify-between items-center mb-6">
+		<h4 class="text-slate-900 dark:text-slate-200 text-lg font-medium">Pengguna</h4>
+
+		<div class="md:flex hidden items-center gap-2.5 font-semibold">
+			<div class="flex items-center gap-2">
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>" class="text-sm font-medium text-slate-700 dark:text-slate-400">Beranda</a>
+			</div>
+
+			<div class="flex items-center gap-2">
+				<i class="ri-arrow-right-s-line text-base text-slate-400 rtl:rotate-180"></i>
+				<a href="#" class="text-sm font-medium text-slate-700 dark:text-slate-400" aria-current="page">Pengguna</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page Title End -->
+
+	<div class="flex flex-col gap-6">
+        <div class="card">
+        	<div class="card-header">
+            	<div class="flex justify-between items-center">
+                	<h4 class="card-title">Daftar User</h4>
+                	<div class='btn rounded border border-success text-success hover:bg-success hover:text-white' ><a href='<?php echo Yii::app()->createUrl('user/create');?>'><i class='ri-add-box-line'></i>&nbsp;&nbsp;Tambah User</a></div>
+                </div>
+            </div>
+            
+			<div class="p-6">
+				<?php
+					foreach(Yii::app()->user->getFlashes() as $key => $message) {
+						echo '<div class="bg-'.$key.'/10 text-'.$key.'   border border-'.$key.'/20 text-sm rounded-md py-3 px-5 mb-4" role="alert">'.$message.'</div>';
+					}
+				?>
+            	<div id="table-gridjs" class="relative overflow-auto">
+					<?php echo $table;?>
+				</div>
+				<div class="row mt-3">
+					<div class="flex justify-end items-center">
+						<?php
+							$pagination="";
+							if($lastPage <=10 ){
+								for($i=1;$i<=$lastPage;$i++){
+									$pagination.="<a href='?page=".($i)."' class='me-1 btn btn-sm ".( ($page==$i) ? 'bg-primary text-white' : 'bg-light text-dark' )." rounded-none'>".$i."</a>";
+								}
+							} 
+
+							echo $pagination;
+						?>
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<?php
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/jquery.min.js', CClientScript::POS_END);
+	Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/libs/loading-overlay/loadingoverlay.js', CClientScript::POS_END);
+?>
 <script type="text/javascript">
 	function del(id){
-		alert("Delete "+id);
 		$.ajax({
-			url: 'delete.php',
+			url: '<?php echo Yii::app()->createUrl('user/delete');?>',
 			data: {'id':id},
 			dataType: 'json',
 			type : 'post',
+			beforeSend : function (){
+                $.LoadingOverlay("show", {
+                    background  : "rgba(0, 0, 0, 0.5)",
+                    image       : "",
+                    text        : "Loading..."
+                });
+            },
 			success : function(response) {
-				// console.log(response.status);
-				alert(response.message);
 				location.reload();
+				$.LoadingOverlay("hide");
 			}
 		});
 	}
 </script>
-</body>
-</html>

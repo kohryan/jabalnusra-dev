@@ -24,7 +24,7 @@
             <h6 class="mb-0">Indikator Statistik</h6>
             <ul class="flex-align gap-8 flex-wrap">
                 <li class="text-sm">
-                    <a href="index.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+                    <a href="index.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
                         <i class="ph ph-house"></i>
                         Beranda
                     </a>
@@ -33,7 +33,7 @@
                     <i class="ph ph-caret-right"></i>
                 </li>
                 <li class="text-sm">
-                  <a href="indikator.html" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
+                  <a href="indikator.php" class="text-main-two-600 flex-align gap-8 hover-text-main-two-700">
                       Indikator Statistik
                   </a>
                 </li>
@@ -65,11 +65,11 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 flex-wrap">
+        <!-- <div class="col-lg-4 col-md-6 mt-4 mt-lg-0 flex-wrap">
           <div class="input-group rounded">
             <input type="search" class="form-control rounded" placeholder="Cari Indikator" aria-label="Search" aria-describedby="search-addon" />
           </div>
-        </div>
+        </div> -->
       </div>
     
      <div class="col-lg-12 col-md-6 mt-4 mt-lg-0">
@@ -78,58 +78,9 @@
         <div class="tab-pane active show" id="tab-1">
           <div class="row">
             <div class="col-lg-12 details order-2 order-lg-1">
-              <div class="table-responsive">
-               <table class="table">
-                 <thead class="text-md" style="background-color: #001861; color: #fff; padding: 12px 15px; font-weight: 600;">
-                  <tr>
-                    <th scope="col">Provinsi</th>
-                    <th scope="col">2021</th>
-                    <th scope="col">2022</th>
-                    <th scope="col">2023</th>
-                  </tr>
-                 </thead>
-                 <tbody class="text-black">
-                  <tr>
-                    <td>DKI Jakarta</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                  <tr>
-                    <td>Jawa Barat</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                  <tr>
-                    <td>Jawa Tengah</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                  <tr>
-                    <td>DI Yogyakarta</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                  <tr></tr>
-                  <tr></tr>
-                    <td>Jawa Timur</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                    <td>Banten</td>
-                    <td>20</td>
-                    <td>30</td>
-                    <td>40</td>
-                  </tr>
-                 </tbody>
-              </table>
-              <p class="pt-20 text-sm">Sumber Data: <span>BPS, Survei Angkatan Kerja Nasional (Sakernas)</span></p>
-              <p class="py-2 text-sm">Catatan: <span>Mencakup seluruh lapangan usaha yang ada pada KBLI 2015</span></p>
-             </div>
+              <div id="tabel" class="table-responsive">
+               
+              </div>
             </div>
           </div>
         </div>
@@ -138,6 +89,56 @@
     </div>
    </div>
   </section><!-- End Statistik Section -->
+<?php 
+  $file=( isset($data->file) ? $data->file[0]->signedUrl : null);
+  if($file){
+    echo "<script src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js'></script>"; 
+    echo " <script>
+        // Ganti URL di bawah ini dengan URL file Excel Anda
+        const url = 'assets/data/".$data->namafile."'; // Path ke file Excel
+
+        fetch(url)
+          .then(response => response.arrayBuffer())
+          .then(data => {
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                let htmlTable = XLSX.utils.sheet_to_html(worksheet);
+                
+                /*
+                const parser = new DOMParser();
+
+                // Step 3: Parse the HTML string
+                const doc = parser.parseFromString(html, 'text/html');
+                const table = doc.querySelector('table');
+
+                // Select the first row of the tbody
+                const firstRow = table.querySelector('tbody tr tr');
+
+                // Create a new thead element
+                const thead = document.createElement('thead');
+                
+                // Move the first row into the thead
+                thead.appendChild(firstRow);
+
+                // Append the thead to the table
+                table.insertBefore(thead, table.querySelector('tbody'));
+
+                // Optional: You may want to ensure tbody remains below thead
+                const tbody = table.querySelector('tbody');
+                table.appendChild(tbody);
+
+                htmlTable=table.outerHTML;
+                */
+                htmlTable=htmlTable.replaceAll('<table>','<table class=\'border-collapse w-100 border border-black dark:border-slate-600 bg-white dark:bg-slate-800 text-sm shadow-sm\'>');
+                htmlTable=htmlTable.replaceAll('<td ','<td class=\'border border-black dark:border-slate-700 px-4 py-4 text-black dark:text-white\' ');
+                document.getElementById('tabel').innerHTML = htmlTable;
+          })
+          .catch(error => console.error('Error loading the Excel file:', error));
+    </script>"; 
+  }
+?>
+
 <?php
-    include("footer.php");
+  include("footer.php");
 ?>

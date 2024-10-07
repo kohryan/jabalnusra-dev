@@ -3,7 +3,14 @@
 #yii
 /backend/assets/*
 /backend/protected/runtime/*
-
+# /backend/protected/config/gconfig.php
+/backend/vendor/*
+/backend/composer.lock
+# /assets/publikasi/*
+# /assets/berita/*
+# /assets/analisis/*
+# /assets/data/*
+# /cached/*
 # dependencies
 /node_modules
 /.pnp

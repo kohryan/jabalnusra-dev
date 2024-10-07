@@ -5,21 +5,28 @@ class AnalisisController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-	public function actions()
+	public function filters()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','create','update','delete'),
+				'users'=>array('@'),
 			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
+			array('deny',  // deny all users
+				'users'=>array('*'),
 			),
 		);
 	}
+
 
 	/**
 	 * This is the default 'index' action that is invoked
@@ -28,8 +35,12 @@ class AnalisisController extends Controller
 	public function actionIndex()
 	{
 		$model=new Analisis;
-		$analisis=$model->list(10,0); //limit,page
-		$this->render('list',array('analisis'=>$analisis));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$analisis=$model->list(10,$page); //limit,page
+		$this->render('list',array('analisis'=>$analisis,'page'=>$page));
 	}
 
 	public function actionCreate(){
@@ -42,9 +53,10 @@ class AnalisisController extends Controller
 			$data=array(
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
+				"namafile"	=> "",
         		"cover"     => ""
 			);
 
@@ -52,9 +64,10 @@ class AnalisisController extends Controller
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/analisis/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}
@@ -63,7 +76,7 @@ class AnalisisController extends Controller
 			$coverpath="";
 			if($uploadedCover){
 				if ($model->validate()) {
-					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedCover->saveAs($coverPath)) {
 						$data['path_cover']=$coverPath;
 					}
@@ -71,6 +84,7 @@ class AnalisisController extends Controller
 			}
 
 			$responses=$model->create($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('create'));
 		}
@@ -88,8 +102,8 @@ class AnalisisController extends Controller
 				"Id"		=> $id,
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
 				"file"     => "",
         		"cover"     => ""
 			);
@@ -98,9 +112,10 @@ class AnalisisController extends Controller
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/file_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/analisis/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				}
 			} 
@@ -109,7 +124,7 @@ class AnalisisController extends Controller
 			$coverpath="";
 			if($uploadedCover){
 				if ($model->validate()) {
-					$coverPath = YiiBase::getPathOfAlias("webroot").'/assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/analisis/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedCover->saveAs($coverPath)) {
 						$data['path_cover']=$coverPath;
 					}
@@ -117,6 +132,7 @@ class AnalisisController extends Controller
 			} 
 
 			$responses=$model->update($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('index'));
 		}

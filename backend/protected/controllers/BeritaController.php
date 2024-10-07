@@ -5,18 +5,24 @@ class BeritaController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-	public function actions()
+	public function filters()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','create','update','delete'),
+				'users'=>array('@'),
 			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
+			array('deny',  // deny all users
+				'users'=>array('*'),
 			),
 		);
 	}
@@ -28,8 +34,12 @@ class BeritaController extends Controller
 	public function actionIndex()
 	{
 		$model=new Berita;
-		$berita=$model->list(10,0); //limit,page
-		$this->render('list',array('berita'=>$berita));
+		$page=1;
+		if(isset($_GET['page'])){
+			$page=(int)$_GET['page'];
+		}
+		$berita=$model->list(10,$page); //limit,page
+		$this->render('list',array('berita'=>$berita,'page'=>$page));
 	}
 
 	public function actionCreate(){
@@ -42,23 +52,26 @@ class BeritaController extends Controller
 			$data=array(
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
-				"image"     => ""
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
+				"image"     => "",
+				"namafile"	=> "",
 			);
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/berita/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/berita/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/berita/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/berita/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}
 
 			$responses=$model->create($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('create'));
 		}
@@ -76,23 +89,26 @@ class BeritaController extends Controller
 				"Id"		=> $id,
 				"judul"     => $judul,
 				"deskripsi" => $deskripsi,
-				"satker_id" => 1,
-				"user_id"   => 1,
-				"image"     => ""
+				"satker_id" => Yii::app()->user->satker_id,
+				"user_id"   => Yii::app()->user->id,
+				"image"     => "",
+				"namafile"	=> "",
 			);
 
 			$uploadedFile = CUploadedFile::getInstance($model, 'file');
 			$filepath="";
 			if($uploadedFile){
 				if ($model->validate()) {
-					$filePath = YiiBase::getPathOfAlias("webroot").'/assets/berita/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/berita/' jika ingin diupload pada asset
+					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/berita/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/berita/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				} 
 			}
 
 			$responses=$model->update($data);
+			( ($responses["status"]==1) ? $this->delete_cache() : '' );
 			Yii::app()->user->setFlash( ( ($responses["status"]==1) ? 'success' : 'danger'), $responses['message']);
 			return $this->redirect(array('index'));
 		}

@@ -9,10 +9,10 @@
 
             <div class="card-body">
                 <div class="flex justify-between mb-6 gap-4">
-					<div class="p-3 w-1/6">
+					<div class="p-3 w-1/4">
 						<?php echo ( isset($data->file) ? "<a href='".$data->file[0]->signedUrl."'>Download Data</a>" : "File tidak tersedia");?>
 					</div>
-                    <div class="w-5/6 p-3">
+                    <div class="w-full p-3">
 						<?php 
                             $table="<table class='p-1 border-collapse min-w-full border border-slate-300 dark:border-slate-600  divide-y divide-gray-200 dark:divide-gray-700'><thead><tr>
                                 <th class='border border-primary dark:border-slate-600 font-semibold p-1 text-slate-900 dark:text-slate-200 text-start'>Judul</th>
@@ -23,7 +23,7 @@
                             $table.="<tr>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( isset($data->file) ? "<a class='text-primary' href='".$data->file[0]->signedUrl."'>".$data->judul."</a>" : $data->judul)."</td>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->subjek ? $data->subjek->nama : '-')."</td>
-                                <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y H:i', strtotime($data->CreatedAt)) : "-")."</td>
+                                <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->CreatedAt ? date('d F Y', strtotime($data->CreatedAt)) : "-")."</td>
                                 <td class='border border-primary dark:border-slate-700 p-1 text-slate-500 dark:text-slate-400'>".( $data->satker ? $data->satker->nama : "-")."</td>
                                 </tr>";
                             $table.="</tbody></table>";

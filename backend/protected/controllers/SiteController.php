@@ -27,9 +27,31 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		if(Yii::app()->user->isGuest){
+			$this->redirect(array('login'));
+		} 
+
+		$analisis=new Analisis;
+		$berita=new Berita;
+		$publikasi=new Publikasi;
+		$data=new Data;
+		
+		$nAnalaisis=$analisis->count();
+		$nBerita=$berita->count();
+		$nPublikasi=$publikasi->count();
+		$nData=$data->count();
+
+		$_data=array(
+			'analisis'=>$nAnalaisis,
+			'berita'=>$nBerita,
+			'publikasi'=>$nPublikasi,
+			'data'=>$nData,
+		);
+		if(Yii::app()->user->role=='SUPERADMIN') { 
+			$user=new User;
+			$_data['user']=$user->count();
+		}
+		$this->render('index',$_data);
 	}
 
 	public function actionBerita(){
@@ -93,25 +115,49 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		//Include Google Client Library for PHP autoload file
+		require_once(Yii::getPathOfAlias('vendor') . '/autoload.php');
+		require_once(Yii::getPathOfAlias('config') . '/gconfig.php');
+		
+		$this->layout="login";
+ 		
 		$model=new LoginForm;
+		
+		if(isset($_GET["code"])){
+			//Include Google Client Library for PHP autoload file
+			require_once(Yii::getPathOfAlias('vendor') . '/autoload.php');
+			require_once(Yii::getPathOfAlias('config') . '/gconfig.php');
+			
+			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+			 //This condition will check there is any error occur during geting authentication token. If there is no any error occur then it will execute if block of code/
+			if(!isset($token['error'])){
+				//Set the access token used for requests
+				$google_client->setAccessToken($token['access_token']);
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+				//Store "access_token" value in $_SESSION variable for future use.
+				$_SESSION['access_token'] = $token['access_token'];
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
+				//Create Object of Google Service OAuth 2 class
+				$google_service = new Google_Service_Oauth2($google_client);
+
+				//Get user profile data from google
+				$data = $google_service->userinfo->get();
+
+
+				if(isset($data['email'])){
+					$model->username=$data['email'];
+				}
+				
+				if($model->validate() && $model->login()){
+					$this->redirect(Yii::app()->user->returnUrl);
+				} else {
+					echo json_encode($model->getErrors());
+					exit();
+				}
+			}
+		} 
+		
+		$this->render('login',array('loginUrl'=>$google_client->createAuthUrl()));//,array('model'=>$model));
 	}
 
 	/**
@@ -119,6 +165,12 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+		//Include Google Client Library for PHP autoload file
+		require_once(Yii::getPathOfAlias('vendor') . '/autoload.php');
+		require_once(Yii::getPathOfAlias('config') . '/gconfig.php');
+		
+		//Reset OAuth access token
+		$google_client->revokeToken();
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
