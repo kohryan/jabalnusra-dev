@@ -9,7 +9,7 @@
     
     $fileCache=findFilename($uri) ? findFilename($uri) : "index";
     $cache_file = 'cached/'.$fileCache."_".$params.'.html';
-    $cache_time = 12 * 3600; // Cache for 12 hour
+    $cache_time = 4 * 3600; // Cache for 4 hour
 
     // Check if the cache file exists and is still fresh
     if (file_exists($cache_file) && (time() - filemtime($cache_file) < $cache_time)) {
