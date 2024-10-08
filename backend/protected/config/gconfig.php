@@ -10,7 +10,7 @@ $google_client->setClientId('613765511344-24h6ivqgr8nnfhk7euirirh2q0f7qi9e.apps.
 $google_client->setClientSecret('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');
 
 //Set the OAuth 2.0 Redirect URI
-$google_client->setRedirectUri('http://localhost/jabalnusra-dev/backend/site/login');
+$google_client->setRedirectUri('http://jabalnusra.id/backend/site/login');
 
 //
 $google_client->addScope('email');
