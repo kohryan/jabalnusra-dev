@@ -9365,7 +9365,7 @@ input:focus-visible {
 /* ================================ Featured Products Css End ============================ */
 /* ============================ Product Details Css Start ============================= */
 .product-details__thumb-slider {
-    padding: clamp(3rem, -2.173rem + 10.777vw, 7.25rem);
+    padding: 0;
 }
 
 .product-details .slick-initialized.slick-slider .slick-slide > div > div {
