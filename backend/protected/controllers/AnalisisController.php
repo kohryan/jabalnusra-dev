@@ -76,7 +76,7 @@ class AnalisisController extends Controller
 			$coverpath="";
 			if($uploadedCover){
 				if ($model->validate()) {
-					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
+					$coverPath = YiiBase::getPathOfAlias("webroot").'/../assets/analisis/cover_' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedCover->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedCover->saveAs($coverPath)) {
 						$data['path_cover']=$coverPath;
 					}
