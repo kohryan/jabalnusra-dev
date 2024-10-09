@@ -55,7 +55,7 @@
             <div class="col-lg-8 pe-xl-4">
                 <div class="blog-item-wrapper">
                     <div class="blog-item"> 
-                        <img style="height:300px;" src="<?php echo ( isset($data->cover) ? $data->cover[0]->signedUrl : "assets/images/berita-no-images.png");?>" alt="" class="cover-img rounded-16">
+                        <img style="height:300px;" src="<?php echo ( isset($data->image) ? $data->image[0]->signedUrl : "assets/images/berita-no-images.png");?>" alt="" class="cover-img rounded-16">
                         <div class="blog-item__content mt-24">
                             <h4 class="mb-24"><?php echo $data->judul;?></h4>
                             
@@ -103,7 +103,7 @@
                             foreach($bt->list as $i=>$data){
                                 $listBerita.='<div class="d-flex align-items-center flex-sm-nowrap flex-wrap gap-24 mb-16">
                                     <a href="berita-detail.php?id='.$data->Id.'" class="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0">
-                                        <img src="'.( isset($data->cover) ? $data->cover[0]->signedUrl : "assets/images/berita-no-images.png").'" alt="" class="cover-img">
+                                        <img src="'.( isset($data->image) ? $data->image[0]->signedUrl : "assets/images/berita-no-images.png").'" alt="" class="cover-img">
                                     </a>
                                     <div class="flex-grow-1">
                                         <h6 class="text-lg">

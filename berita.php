@@ -44,7 +44,7 @@
                     $listBerita.='<div class="col-lg-4">
                         <div class="blog-item"> 
                             <a href="berita-detail.php?id='.$data->Id.'" class="w-100 h-100 rounded-16 overflow-hidden">
-                                <img src="'.( isset($data->cover) ? $data->cover[0]->signedUrl : "assets/images/berita-no-images.png").'" alt="" class="cover-img">
+                                <img src="'.( isset($data->image) ? $data->image[0]->signedUrl : "assets/images/berita-no-images.png").'" alt="" class="cover-img">
                             </a>
                             <div class="blog-item__content mt-24">
                                 <h6 class="text-2xl mb-24">
