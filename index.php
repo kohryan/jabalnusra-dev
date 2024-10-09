@@ -97,7 +97,7 @@
         <div class="section-heading flex-between flex-wrap gap-16">
             <h5 class="mb-0">Publikasi</h5>
             <div class="flex-align gap-16">
-                <a href="publikasi-detail.php" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline"> Lihat Selengkapnya</a>
+                <a href="publikasi.php" class="text-sm fw-medium text-gray-700 hover-text-main-two-600 hover-text-decoration-underline"> Lihat Selengkapnya</a>
             </div>
         </div>
         
