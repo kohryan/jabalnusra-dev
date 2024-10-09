@@ -57,7 +57,7 @@
                             <div class="product-details__thumb-slider border border-gray-100 rounded-16">
                                 <div class="">
                                     <div class="product-details__thumb flex-center">
-                                        <?php echo ( isset($data->image) ? "<img src='".$data->image[0]->signedUrl."' alt='".$data->judul."' />" : "<image src='assets/images/no-images.jpg' alt='no-image' />");?>
+                                        <?php echo ( isset($data->cover) ? "<img src='".$data->cover[0]->signedUrl."' alt='".$data->judul."' />" : "<image src='assets/images/no-images.jpg' alt='no-image' />");?>
                                     </div>
                                 </div>
                             </div>

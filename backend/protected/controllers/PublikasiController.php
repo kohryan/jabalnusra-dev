@@ -118,6 +118,7 @@ class PublikasiController extends Controller
 					$filePath = YiiBase::getPathOfAlias("webroot").'/../assets/publikasi/' . strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName; // tuliskan '/../assets/publikasi/' jika ingin diupload pada asset
 					if ($uploadedFile->saveAs($filePath)) {
 						$data['path_file']=$filePath;
+						$data['namafile']=strtolower( preg_replace('/[^a-zA-Z0-9]/', '-', $judul)).".".$uploadedFile->extensionName;
 					}
 				}
 			} 
